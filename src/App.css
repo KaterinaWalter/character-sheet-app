@@ -1,31 +1,150 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&family=IM+Fell+English+SC&display=swap');
+
+:root {
+  --beige: #FEF6CB;
+  --purple-01: #C5B3E5;
+  --purple-02: #8B67CD;
+  --purple-03: #6F42C1;
+  --purple-04: #432874;
+}
+
+body {
+  background-color: var(--beige);
+}
+
+p, input, select, span {
+  font-family: "Bellefair" !important;
+}
+
+h1, h2, h3, strong, button, label {
+  font-family: "IM Fell English SC" !important;
+}
+
+footer {
+  color: #432874 !important;
+}
+
+footer a {
+  color: #6F42C1 !important;
+}
+
+.btn-primary {
+  background: #6F42C1 !important;
+  border-color: #432874 !important;
+  color: white !important;
+}
+.btn-primary:hover {
+  background: #8B67CD !important;
+  border-color: #432874 !important;
+  color: white !important;
+  transform: scale(1.1);
+}
+.logo {
+  max-height: 100px;
+}
+.card {
+  background: #FEF6CB !important;
+  border-color: black !important;
+}
+.card-img-top {
+  max-height: 100px;
+  padding-top: 10px;
+}
+
+#class-overview-container {
+  position: relative;
+  display: inline-block;
+  background: transparent;  
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#form-container {
+  border: 2px solid black;
+}
+  
+@media (max-width: 768px) {
+  .overlay-text {
+     font-size: 14px;
+  }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+/* Printable character sheet */
+@media print {
+  /* Hide elements during print */
+  a, button, footer {
+      display: none;
+      opacity: 0;
+  }
+  #printable-area {
+      border: 2px solid black;
+  }
+  body {
+      margin: 1in;
+      font-size: 14px;
+  }
 }
 
-.App-link {
-  color: #61dafb;
+/* Custom Dropdown Styles */
+.dd-menu {
+  position: relative;
+  display: inline-block;
+}
+.dd-button {
+  font-family: "Bellefair" !important;
+  font-style: italic;
+  cursor: pointer;
+  background: #fff;
+  user-select: none;
+  min-width: 160px;
+}
+.dd-content {
+  font-family: "Bellefair" !important;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1000;
+}
+.dd-content div {
+  cursor: pointer;
+  user-select: none;
+}
+.dd-content div:hover {
+  background-color: #f1f1f1;
+}
+    
+/* Tooltip Styles */
+.dd-hover-info {
+  position: absolute;
+  background: #FEF6CB !important;
+  border-color: black !important;
+  z-index: 2000;
+  font-size: 14px;
+  display: none;
+  overflow: visible;
+  padding: .375rem .75rem;
+}
+.dd-hover-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+.dd-hover-info p {
+  margin: 0;
+  color: #555;
 }
 
-.heart {
-  color: #ff0000;
-}
-
-.small {
-  font-size: 0.75rem;
+/* Ensure parent elements do not clip the tooltip */
+.dd-menu, #form-container {
+  overflow: visible !important;
 }
