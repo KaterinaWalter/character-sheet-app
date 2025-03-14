@@ -1,3 +1,13 @@
+import BackgroundForm from "../forms/BackgroundForm";
+import ClassSpecificForm from "../forms/ClassSpecificForm";
+import AbilityForm from "../forms/AbilityForm";
+
 export default function CharacterDetails() {
-    return ("");
+    return (
+        <div>
+            <BackgroundForm />
+            <ClassSpecificForm />
+            <AbilityForm />
+        </div>
+    );
 }

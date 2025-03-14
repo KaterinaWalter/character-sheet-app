@@ -1,11 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellefair&family=IM+Fell+English+SC&display=swap');
 
 :root {
-  --beige: #FEF6CB;
-  --purple-01: #C5B3E5;
-  --purple-02: #8B67CD;
-  --purple-03: #6F42C1;
-  --purple-04: #432874;
+  --beige: #f7ece1;
+  --purple1: #C5B3E5;
+  --purple2: #8B67CD;
+  --purple3: #6F42C1;
+  --purple4: #432874;
+  --grey1: #c1bdb3;
+  --grey2: #7f7979;
+  --grey3: #323031;
+  --grey4: #222122;
+  --barbarian: linear-gradient(90deg, #C5B3E5 0%, #8B67CD 100%);
+  --bard: linear-gradient(90deg, #C5B3E5 0%, #8B67CD 100%);
+  --cleric: linear-gradient(90deg, #F9D5E5 0%, #F4A7B9 100%);
+  --druid: linear-gradient(90deg, #C5E5D5 0%, #67CD8B 100%);
+  --fighter: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
+  --monk: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
+  --paladin: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
+  --ranger: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
+  --rogue: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
+  --sorcerer: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
+  --wizard: linear-gradient(90deg, #E5C5D5 0%, #CD678B 100%);
+  --warlock: linear-gradient(90deg, #E5C5D5 0%, #CD678B 100%);
 }
 
 body {
@@ -21,29 +37,34 @@ h1, h2, h3, strong, button, label {
 }
 
 footer {
-  color: #432874 !important;
+  color: var(--grey4) !important;
 }
 
 footer a {
-  color: #6F42C1 !important;
+  color: var(--grey3) !important;
+}
+
+.card-img-top {
+  color: inherit !important;
 }
 
 .btn-primary {
-  background: #6F42C1 !important;
-  border-color: #432874 !important;
+  background: var(--grey3) !important;
+  border-color: var(--grey4) !important;
   color: white !important;
 }
 .btn-primary:hover {
-  background: #8B67CD !important;
-  border-color: #432874 !important;
+  background: var(--grey2) !important;
+  border-color: var(--grey3) !important;
   color: white !important;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
+
 .logo {
   max-height: 100px;
 }
 .card {
-  background: #FEF6CB !important;
+  background: white !important;
   border-color: black !important;
 }
 .card-img-top {
@@ -92,7 +113,7 @@ footer a {
   }
 }
 
-/* Custom Dropdown Styles */
+/* Custom Dropdown Styles 
 .dd-menu {
   position: relative;
   display: inline-block;
@@ -122,8 +143,6 @@ footer a {
 .dd-content div:hover {
   background-color: #f1f1f1;
 }
-    
-/* Tooltip Styles */
 .dd-hover-info {
   position: absolute;
   background: #FEF6CB !important;
@@ -143,8 +162,7 @@ footer a {
   margin: 0;
   color: #555;
 }
-
-/* Ensure parent elements do not clip the tooltip */
 .dd-menu, #form-container {
   overflow: visible !important;
 }
+*/

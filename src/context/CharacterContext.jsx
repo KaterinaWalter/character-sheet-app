@@ -11,8 +11,15 @@ export const CharacterProvider = ({ children }) => {
     background: '',
     abilityScores: {},
   });
+  // Function to update the character class
+  const setCharacterClass = (characterClass) => {
+    setCharacter((prevCharacter) => ({
+      ...prevCharacter,
+      class: characterClass,
+    }));
+  };
   return (
-    <CharacterContext.Provider value={{ character, setCharacter }}>
+    <CharacterContext.Provider value={{ character, setCharacter, setCharacterClass }}>
       {children}
     </CharacterContext.Provider>
   );

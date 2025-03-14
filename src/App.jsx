@@ -32,7 +32,7 @@ export default function App() {
     <CharacterProvider>
     <div className="App d-flex flex-column min-vh-100">
       <Header />
-      <main>{renderView()}</main>
+      <main className="container-fluid">{renderView()}</main>
       <Footer />
     </div>
     </CharacterProvider>
