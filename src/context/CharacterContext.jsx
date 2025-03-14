@@ -13,6 +13,7 @@ export const CharacterProvider = ({ children }) => {
   });
   // Function to update the character class
   const setCharacterClass = (characterClass) => {
+    console.log('SETTING CHARACTER CLASS:', characterClass);
     setCharacter((prevCharacter) => ({
       ...prevCharacter,
       class: characterClass,
