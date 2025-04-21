@@ -1,7 +1,7 @@
 export default function BackgroundForm() {
     return (
         <div>
-            <h1>Character Background</h1>
+            <h2>Character Background</h2>
         </div>
     );
 }
