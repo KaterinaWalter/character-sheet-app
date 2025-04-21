@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+import { CharacterContext } from '../../context/CharacterContext';
+
 export default function AbilityForm() {
     return (
         <div>
-            <h1>Ability Scores</h1>
+            <h2>Ability Scores</h2>
         </div>
     );
 }

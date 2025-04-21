@@ -34,7 +34,7 @@ export default function ClassSelection({ onNext }) {
               <div className="card my-2" style={{ background: classInfo.classColor, color: classInfo.classColor }} >
                 <img src={classInfo.imgSrc} className="card-img-top" alt={`${classInfo.classTitle} icon`} />
                 <div className="card-body">
-                  <button className="btn btn-primary w-100" onClick={() => handleClassSelect()}>{classInfo.classTitle}</button>
+                  <button className="btn btn-primary w-100" onClick={() => handleClassSelect(classInfo.classTitle)}>{classInfo.classTitle}</button>
                 </div>
               </div>
             </div>

@@ -10,13 +10,12 @@ export default function CharacterDetails({ onNext, onBack }) {
     return (
         <div>
             <button onClick={onBack}>Back</button>
-            <h2>Character Details</h2>
-            <p><strong>Class:</strong> {character.class || "Not selected"}</p>
-            <p><strong>Background:</strong> {character.background || "Not selected"}</p>
+            <div className="container">
+                <h2>Character Details</h2>
+                <p><strong>Class:</strong> {character.class || "None"}</p>
+                <p><strong>Background:</strong> {character.background || "None"}</p>
+            </div>
             <BackgroundForm />
-            <ClassSpecificForm />
-            <AbilityForm />
-            <button onClick={onNext}>Next</button>
         </div>
     );
 }
