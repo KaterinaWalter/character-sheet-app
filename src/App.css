@@ -10,18 +10,30 @@
   --grey2: #7f7979;
   --grey3: #323031;
   --grey4: #222122;
-  --barbarian: linear-gradient(90deg, #C5B3E5 0%, #8B67CD 100%);
-  --bard: linear-gradient(90deg, #C5B3E5 0%, #8B67CD 100%);
-  --cleric: linear-gradient(90deg, #F9D5E5 0%, #F4A7B9 100%);
-  --druid: linear-gradient(90deg, #C5E5D5 0%, #67CD8B 100%);
-  --fighter: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
-  --monk: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
-  --paladin: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
-  --ranger: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
-  --rogue: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
-  --sorcerer: linear-gradient(90deg, #E5D5C5 0%, #CD8B67 100%);
-  --wizard: linear-gradient(90deg, #E5C5D5 0%, #CD678B 100%);
-  --warlock: linear-gradient(90deg, #E5C5D5 0%, #CD678B 100%);
+  --barbarian: #E7623E;
+  --bard: #AB6DAC;
+  --cleric: #91A1B2;
+  --druid: #7A853B;
+  --fighter: #7F513E;
+  --monk: #51A5C5;
+  --paladin: #B59E54;
+  --ranger: #507F62;
+  --rogue: #555752;
+  --sorcerer: #992E2E;
+  --warlock: #2A50A1;
+  --wizard: #7B469B;
+  --barbarian-grad: linear-gradient(180deg, #ffc8b9 0%, var(--barbarian) 80%);
+  --bard-grad: linear-gradient(180deg, #fec0ff 0%, var(--bard) 80%);
+  --cleric-grad: linear-gradient(180deg, #daecff 0%, var(--cleric) 80%);
+  --druid-grad: linear-gradient(180deg, #f1ffa0 0%, var(--druid) 80%);
+  --fighter-grad: linear-gradient(180deg, #ffc4ab 0%, var(--fighter) 80%);
+  --monk-grad: linear-gradient(180deg, #ade5fb 0%, var(--monk) 80%);
+  --paladin-grad: linear-gradient(180deg, #ffefbc 0%, var(--paladin) 80%);
+  --ranger-grad: linear-gradient(180deg, #c2ffd9 0%, var(--ranger) 80%);
+  --rogue-grad: linear-gradient(180deg, #fbfff4 0%, var(--rogue) 80%);
+  --sorcerer-grad: linear-gradient(180deg, #ff9f9f 0%, var(--sorcerer) 80%);
+  --warlock-grad: linear-gradient(180deg, #bad0ff 0%, var(--warlock) 80%);
+  --wizard-grad: linear-gradient(180deg, #e3b7ff 0%, var(--wizard) 80%);
 }
 
 body {
@@ -49,13 +61,13 @@ footer a {
 }
 
 .btn-primary {
-  background: var(--grey3) !important;
-  border-color: var(--grey4) !important;
+  background: black !important;
+  border-color: black !important;
   color: white !important;
 }
 .btn-primary:hover {
-  background: var(--grey2) !important;
-  border-color: var(--grey3) !important;
+  background: var(--grey3) !important;
+  border-color: black !important;
   color: white !important;
   transform: scale(1.05);
 }
@@ -64,8 +76,8 @@ footer a {
   max-height: 100px;
 }
 .card {
-  background: white !important;
   border-color: black !important;
+  border-width: 2px !important;
 }
 .card-img-top {
   max-height: 100px;

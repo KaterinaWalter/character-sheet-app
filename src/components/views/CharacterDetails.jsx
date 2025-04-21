@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 import BackgroundForm from "../forms/BackgroundForm";
 import ClassSpecificForm from "../forms/ClassSpecificForm";
