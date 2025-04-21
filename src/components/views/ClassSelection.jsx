@@ -2,6 +2,13 @@ import { useContext } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 
 export default function ClassSelection({ onNext }) {
+  const { setCharacterClass } = useContext(CharacterContext);
+
+  const handleClassSelect = (classTitle) => {
+    setCharacterClass(classTitle);
+    onNext();
+  };
+
   const classes = [
     { imgSrc: './src/assets/ClassIcon-Barbarian.svg', classTitle: 'Barbarian', classColor: 'var(--barbarian-grad)' },
     { imgSrc: './src/assets/ClassIcon-Bard.svg', classTitle: 'Bard', classColor: 'var(--bard-grad)' },
@@ -24,34 +31,16 @@ export default function ClassSelection({ onNext }) {
         <div className="row" key={rowIndex}>
           {classes.slice(rowIndex * 4, rowIndex * 4 + 4).map((classInfo, index) => (
             <div className="col-md-3" key={index}>
-              <ClassCard
-                imgSrc={classInfo.imgSrc}
-                classTitle={classInfo.classTitle}
-                classColor={classInfo.classColor}
-                onNext={onNext}
-              />
+              <div className="card my-2" style={{ background: classInfo.classColor, color: classInfo.classColor }} >
+                <img src={classInfo.imgSrc} className="card-img-top" alt={`${classInfo.classTitle} icon`} />
+                <div className="card-body">
+                  <button className="btn btn-primary w-100" onClick={() => handleClassSelect()}>{classInfo.classTitle}</button>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       ))}
     </div>
-  );
-}
-
-export function ClassCard({ imgSrc, classTitle, classColor, onNext }) {
-  const { setCharacterClass } = useContext(CharacterContext);
-
-  const handleClassSelect = () => {
-    setCharacterClass(classTitle);
-    onNext();
-  };
-
-  return (
-      <div className="card my-2" style={{ background: classColor, color: classColor }} >
-        <img src={imgSrc} className="card-img-top" alt={`${classTitle} icon`} />
-        <div className="card-body">
-          <button className="btn btn-primary w-100" onClick={handleClassSelect}>{classTitle}</button>
-        </div>
-      </div>
   );
 }
