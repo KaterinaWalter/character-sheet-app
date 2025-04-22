@@ -55,6 +55,14 @@ footer a {
   color: var(--grey-md) !important;
 }
 
+#character-container {
+  border: 2px solid black;
+  border-radius: .375rem;
+  background: white;
+  padding: 5px 10px;
+  margin-bottom: 5px; 
+}
+
 .card-img-top {
   color: inherit !important;
 }
@@ -83,13 +91,7 @@ footer a {
   padding-top: 10px;
 }
 
-.character-container {
-  border: 2px solid black;
-  background: white;
-  padding: 5px 10px;
-  margin-bottom: 5px;
-  
-}
+
 
 /*
 #class-overview-container {

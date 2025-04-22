@@ -1,14 +1,53 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 
 export default function OriginForm() {
     const { setCharacter } = useContext(CharacterContext);
 
+    // State to track selected species and subspecies
+    const [selectedSpecies, setSelectedSpecies] = useState('');
+    const [selectedSubspecies, setSelectedSubspecies] = useState('');
+
+    // Mapping of species to subspecies
+    const speciesToSubspecies = {
+        Dragonborn: ['Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn', 'Bronze Dragonborn', 'Copper Dragonborn', 'Gold Dragonborn', 'Green Dragonborn', 'Red Dragonborn', 'Silver Dragonborn', 'White Dragonborn'],
+        Elf: ['High Elf', 'Wood Elf', 'Drow'],
+        Gnome: ['Forest Gnome', 'Rock Gnome'],
+        Goliath: ['Cloud Giant', 'Fire Giant', 'Frost Giant', 'Hill Giant', 'Stone Giant', 'Storm Giant'],
+        Tiefling: ['Abyssal Tiefling', 'Chtonian Tiefling', 'Infernal Tiefling'],
+    };
+
+    // Mapping of species to traits
+    const speciesToTraits = {
+        Aasimar: ['Celestial Resistance', 'Healing Hands', 'Light Bearer', 'Celestial Revelation'],
+        Dragonborn: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance', 'Draconic Flight'],
+        Dwarf: ['Dwarven Resilience', 'Dwarven Toughness', 'Stonecunning'],
+        Elf: ['Elven Lineage', 'Fey Ancestry', 'Keen Senses', 'Trance'],
+        Gnome: ['Gnomish Cunning', 'Gnomish Lineage'],
+        Goliath: ['Giant Ancestry', 'Large Form', 'Powerful Build'],
+        Halfling: ['Brave', 'Halfling Nimbleness', 'Luck', 'Naturally Stealthy'],
+        Human: ['Resourceful', 'Skillful', 'Versatile'],
+        Orc: ['Adrenaline Rush', 'Relentless Endurance'],
+        Tiefling: ['Infernal Legacy', 'Otherworldly Presence'],
+    };
+
     const handleSpeciesChange = (event) => {
         const species = event.target.value;
+        setSelectedSpecies(species);
+        setSelectedSubspecies(''); // Reset subspecies when species changes
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
             species,
+            traits: speciesToTraits[species] || [], // Add traits based on species
+        }));
+    };
+
+    const handleSubspeciesChange = (event) => {
+        const subspecies = event.target.value;
+        setSelectedSubspecies(subspecies);
+        setCharacter((prevCharacter) => ({
+            ...prevCharacter,
+            species: subspecies, // Replace species with subspecies
         }));
     };
 
@@ -48,9 +87,17 @@ export default function OriginForm() {
                         <option value="Tiefling">Tiefling</option>
                     </select>
                 </div>
+                {speciesToSubspecies[selectedSpecies] && (
                 <div className="col-6">
                     <label htmlFor="subspecies">Subspecies</label>
+                    <select id="subspecies" className="form-select" onChange={handleSubspeciesChange}>
+                        <option value="">Select a subspecies</option>
+                        {speciesToSubspecies[selectedSpecies].map((subspecies) => (
+                            <option key={subspecies} value={subspecies}>{subspecies}</option>
+                        ))}
+                    </select>
                 </div>
+                )}
             </div>
             <div className="row">
                 <div className="col-6">
@@ -75,7 +122,6 @@ export default function OriginForm() {
                     </select>
                 </div>
                 <div className="col-6">
-                    <label htmlFor="feat">Feat</label>
                 </div>
             </div>
             <div className="row">
@@ -94,6 +140,8 @@ export default function OriginForm() {
                         <option value="Chaotic Evil">Chaotic Evil</option>
                         <option value="Unaligned">Unaligned</option>
                     </select>
+                </div>
+                <div className="col-6">
                 </div>
             </div>
         </div>
