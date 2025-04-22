@@ -1,15 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellefair&family=IM+Fell+English+SC&display=swap');
 
 :root {
-  --beige: #f7ece1;
-  --purple1: #C5B3E5;
-  --purple2: #8B67CD;
-  --purple3: #6F42C1;
-  --purple4: #432874;
-  --grey1: #c1bdb3;
-  --grey2: #7f7979;
-  --grey3: #323031;
-  --grey4: #222122;
+  --grey-lt: #7f7979;
+  --grey-md: #323031;
+  --grey-dk: #222122;
   --barbarian: #E7623E;
   --bard: #AB6DAC;
   --cleric: #91A1B2;
@@ -37,11 +31,16 @@
 }
 
 body {
-  background-color: var(--beige);
+  background-color: whitesmoke;
 }
 
-p, input, select, span {
+p, input, select, span, li {
   font-family: "Bellefair" !important;
+}
+
+h2 span {
+  font-family: "IM Fell English SC" !important;
+
 }
 
 h1, h2, h3, strong, button, label {
@@ -49,11 +48,11 @@ h1, h2, h3, strong, button, label {
 }
 
 footer {
-  color: var(--grey4) !important;
+  color: var(--grey-dk) !important;
 }
 
 footer a {
-  color: var(--grey3) !important;
+  color: var(--grey-md) !important;
 }
 
 .card-img-top {
@@ -66,7 +65,7 @@ footer a {
   color: white !important;
 }
 .btn-primary:hover {
-  background: var(--grey3) !important;
+  background: var(--grey-md) !important;
   border-color: black !important;
   color: white !important;
   transform: scale(1.05);
@@ -84,6 +83,15 @@ footer a {
   padding-top: 10px;
 }
 
+.character-container {
+  border: 2px solid black;
+  background: white;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  
+}
+
+/*
 #class-overview-container {
   position: relative;
   display: inline-block;
@@ -97,17 +105,13 @@ footer a {
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
-#form-container {
-  border: 2px solid black;
-}
   
 @media (max-width: 768px) {
   .overlay-text {
      font-size: 14px;
   }
 }
-
+*/
 
 /* Printable character sheet */
 @media print {

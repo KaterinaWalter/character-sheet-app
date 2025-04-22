@@ -8,8 +8,16 @@ export const CharacterProvider = ({ children }) => {
   // State to hold character details
   const [character, setCharacter] = useState({
     class: '',
+    species: '',
     background: '',
-    abilityScores: {},
+    alignment: '',
+    proficiencies: [],
+    profBonus: 0,
+    armorClass: 0,
+    maxHP: 0,
+    speed: 0,
+    darkvision: 0,
+    abilityScores: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
   });
   // Function to update the character class
   const setCharacterClass = (characterClass) => {
