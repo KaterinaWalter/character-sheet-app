@@ -16,6 +16,7 @@ export default function CharacterDetails({ onNext, onBack }) {
 
                 <div className="col-md-7 text-start forms-container">
                     <OriginForm />
+                    <br></br>
                 </div>
                 <div className="col-md-5 text-start character-container">
                     <h2 className="fw-bold text-center">
