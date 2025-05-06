@@ -19,6 +19,23 @@ const recAbilityScores = {
   Wizard: { STR: 8, DEX: 13, CON: 14, INT: 15, WIS: 12, CHA: 10 }
 };
 
+// Species-specific stats (speed, darkvision, AC?, HP?)
+const speciesStats = {
+  Aasimar: { speed: 30, darkvision: 60 },
+  Dragonborn: { speed: 30, darkvision: 60},
+  Dwarf: { speed: 30, darkvision: 120},
+  Elf: { speed: 30, darkvision: 60 },
+  'Drow': { speed: 30, darkvision: 120 },
+  'High Elf': { speed: 30, darkvision: 60 },
+  'Wood Elf': { speed: 35, darkvision: 60 },
+  Gnome: { speed: 30, darkvision: 60},
+  Goliath: { speed: 35, darkvision: 0},
+  Halfling: { speed: 30, darkvision: 0},
+  Human: { speed: 30, darkvision: 0},
+  Orc: { speed: 30, darkvision: 120},
+  Tiefling: { speed: 30, darkvision: 60},
+};
+
 // Create the provider component to wrap the app
 export const CharacterProvider = ({ children }) => {
   // State to hold character details
