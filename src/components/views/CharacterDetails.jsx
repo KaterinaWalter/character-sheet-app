@@ -54,26 +54,32 @@ export default function CharacterDetails({ onNext, onBack }) {
                         <div className="col-2 text-center d-flex flex-column">
                             <span className="">STR</span>
                             <span className="">{character.abilityScores['STR'] || 0}</span>
+                            <span className="">{character.abilityMods['STR'] || 0}</span>
                         </div>
                         <div className="col-2 text-center d-flex flex-column">
                             <span className="">DEX</span>
                             <span className="">{character.abilityScores['DEX'] || 0}</span>
+                            <span className="">{character.abilityMods['DEX'] || 0}</span>
                         </div>
                         <div className="col-2 text-center d-flex flex-column">
                             <span className="">CON</span>
                             <span className="">{character.abilityScores['CON'] || 0}</span>
+                            <span className="">{character.abilityMods['CON'] || 0}</span>
                         </div>
                         <div className="col-2 text-center d-flex flex-column">
                             <span className="">INT</span>
                             <span className="">{character.abilityScores['INT'] || 0}</span>
+                            <span className="">{character.abilityMods['INT'] || 0}</span>
                         </div>
                         <div className="col-2 text-center d-flex flex-column">
                             <span className="">WIS</span>
                             <span className="">{character.abilityScores['WIS'] || 0}</span>
+                            <span className="">{character.abilityMods['WIS'] || 0}</span>
                         </div>
                         <div className="col-2 text-center d-flex flex-column">
                             <span className="">CHA</span>
                             <span className="">{character.abilityScores['CHA'] || 0}</span>
+                            <span className="">{character.abilityMods['CHA'] || 0}</span>
                         </div>
                     </div>
                 </div>

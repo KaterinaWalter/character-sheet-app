@@ -2,34 +2,11 @@ import { useContext, useState } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 
 export default function OriginForm() {
-    const { setCharacter } = useContext(CharacterContext);
+    const { setCharacter, speciesToSubspecies, speciesToTraits, speciesStats } = useContext(CharacterContext);
 
     // State to track selected species and subspecies
     const [selectedSpecies, setSelectedSpecies] = useState('');
     const [selectedSubspecies, setSelectedSubspecies] = useState('');
-
-    // Mapping of species to subspecies
-    const speciesToSubspecies = {
-        Dragonborn: ['Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn', 'Bronze Dragonborn', 'Copper Dragonborn', 'Gold Dragonborn', 'Green Dragonborn', 'Red Dragonborn', 'Silver Dragonborn', 'White Dragonborn'],
-        Elf: ['High Elf', 'Wood Elf', 'Drow'],
-        Gnome: ['Forest Gnome', 'Rock Gnome'],
-        Goliath: ['Cloud Giant', 'Fire Giant', 'Frost Giant', 'Hill Giant', 'Stone Giant', 'Storm Giant'],
-        Tiefling: ['Abyssal Tiefling', 'Chtonian Tiefling', 'Infernal Tiefling'],
-    };
-
-    // Mapping of species to traits
-    const speciesToTraits = {
-        Aasimar: ['Celestial Resistance', 'Healing Hands', 'Light Bearer', 'Celestial Revelation'],
-        Dragonborn: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance', 'Draconic Flight'],
-        Dwarf: ['Dwarven Resilience', 'Dwarven Toughness', 'Stonecunning'],
-        Elf: ['Elven Lineage', 'Fey Ancestry', 'Keen Senses', 'Trance'],
-        Gnome: ['Gnomish Cunning', 'Gnomish Lineage'],
-        Goliath: ['Giant Ancestry', 'Large Form', 'Powerful Build'],
-        Halfling: ['Brave', 'Halfling Nimbleness', 'Luck', 'Naturally Stealthy'],
-        Human: ['Resourceful', 'Skillful', 'Versatile'],
-        Orc: ['Adrenaline Rush', 'Relentless Endurance'],
-        Tiefling: ['Infernal Legacy', 'Otherworldly Presence'],
-    };
 
     const handleSpeciesChange = (event) => {
         const species = event.target.value;
@@ -38,6 +15,8 @@ export default function OriginForm() {
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
             species,
+            speed: speciesStats[species]?.speed || 0, // Set speed based on species
+            darkvision: speciesStats[species]?.darkvision || 0, // Set darkvision based on species
             traits: speciesToTraits[species] || [], // Add traits based on species
         }));
     };
@@ -48,9 +27,15 @@ export default function OriginForm() {
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
             species: subspecies, // Replace species with subspecies
+            speed: speciesStats[subspecies]?.speed || 0, // Set speed based on subspecies
+            darkvision: speciesStats[subspecies]?.darkvision || 0, // Set darkvision based on subspecies
         }));
     };
 
+    /* TODO: After assigning ability scores, adjust them according to your background. 
+    Background lists three abilities; increase one of those scores by 2 and a different one by 1,
+    or increase all three by 1. None of these increases can raise a score above 20.
+    */
     const handleBackgroundChange = (event) => {
         const background = event.target.value;
         setCharacter((prevCharacter) => ({
