@@ -4,6 +4,14 @@ import { CharacterContext } from '../../context/CharacterContext';
 export default function OriginForm() {
     const { setCharacter, speciesToSubspecies, speciesToTraits, speciesStats } = useContext(CharacterContext);
 
+    const handleAlignmentChange = (event) => {
+        const alignment = event.target.value;
+        setCharacter((prevCharacter) => ({
+            ...prevCharacter,
+            alignment,
+        }));
+    };
+
     // State to track selected species and subspecies
     const [selectedSpecies, setSelectedSpecies] = useState('');
     const [selectedSubspecies, setSelectedSubspecies] = useState('');
@@ -34,11 +42,6 @@ export default function OriginForm() {
         }));
     };
 
-    /* TODO: After selecting a background, user decides which ability scores to improve. 
-    Each background has three possible abilities; user can choose to increase 
-    one of those scores by 2 and a different one by 1, or increase all three by 1. 
-    None of these increases can raise a score above 20.
-    */
     const handleBackgroundChange = (event) => {
         const background = event.target.value;
         setCharacter((prevCharacter) => ({
@@ -47,13 +50,39 @@ export default function OriginForm() {
         }));
     };
 
-    const handleAlignmentChange = (event) => {
-        const alignment = event.target.value;
+    /* TODO: After selecting a background, user decides which ability scores to improve. 
+    Each background has three possible abilities; user can choose to increase 
+    one of those scores by 2 and a different one by 1, or increase all three by 1. 
+    None of these increases can raise a score above 20.
+
+    const handleBackgroundChange = (event) => {
+        const background = event.target.value;
+        setSelectedBackground(background);
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
-            alignment,
+            background,
         }));
     };
+
+    const handleAbilityAllocationChange = (ability, value) => {
+        setAbilityAllocation((prev) => ({
+            ...prev,
+            [ability]: value,
+        }));
+    };
+
+    const handleAbilityAllocationSubmit = () => {
+        const updatedAbilityScores = { ...character.abilityScores };
+        for (const [ability, points] of Object.entries(abilityAllocation)) {
+            updatedAbilityScores[ability] += points;
+        }
+        setCharacter((prevCharacter) => ({
+            ...prevCharacter,
+            abilityScores: updatedAbilityScores,
+            abilityMods: calculateAbilityMods(updatedAbilityScores),
+        }));
+    };
+    */
 
     return (
         <div>
@@ -109,9 +138,12 @@ export default function OriginForm() {
                         <option value="Wayfarer">Wayfarer</option>
                     </select>
                 </div>
+                {selectedBackground && (
                 <div className="col-6">
-                    
+                    <label>Allocate Ability Bonuses</label>
+                    <p>Distribute 3 points among the following:</p>
                 </div>
+                )}
             </div>
             <div className="row">
                 <div className="col-6">
