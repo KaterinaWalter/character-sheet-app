@@ -88,8 +88,6 @@ export const CharacterProvider = ({ children }) => {
         mods[key] = Math.floor((score - 10) / 2);
       }
     }
-    // DEBUG
-    console.log('Ability Mods:', abilityMods);
     return mods;
   };
 
@@ -109,11 +107,8 @@ export const CharacterProvider = ({ children }) => {
       Warlock: 8,
       Wizard: 6,
     };
-    // Calculate maxHP based on class and CON modifier
-    // Level 1 HP is equal to the hit die + CON modifier
+    // Level 1 HP is equal to class hit die + CON modifier
     const level1HP = hitDie[characterClass] + abilityMods.CON;
-    // DEBUG
-    console.log('Level 1 HP:', level1HP, 'Hit Die:', hitDie[characterClass], 'CON Modifier:', abilityMods.CON);
     return level1HP;
   };
 
@@ -121,7 +116,7 @@ export const CharacterProvider = ({ children }) => {
   // Function to update the character class
   const setCharacterClass = (characterClass) => {
     console.log('SETTING CHARACTER CLASS:', characterClass);
-    const updatedAbilityScores = recAbilityScores[characterClass] || prevCharacter.abilityScores;
+    const updatedAbilityScores = recAbilityScores[characterClass];
     setCharacter((prevCharacter) => ({
       ...prevCharacter,
       class: characterClass,
