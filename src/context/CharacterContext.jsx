@@ -80,36 +80,42 @@ export const CharacterProvider = ({ children }) => {
   const calculateAbilityMods = (abilityScores) => {
     const mods = {};
     for (const [key, score] of Object.entries(abilityScores)) {
-      const mod = Math.floor((score - 10) / 2);
-      mods[key] = mod >= 0 ? `+${mod}` : `${mod}`;
+      if (score < 10) {
+        mods[key] = Math.ceil((score - 10) / 2);
+      } else if (score > 20) {
+        mods[key] = Math.floor((score - 10) / 2);
+      } else {
+        mods[key] = Math.floor((score - 10) / 2);
+      }
     }
+    // DEBUG
+    console.log('Ability Mods:', abilityMods);
     return mods;
   };
 
   // Helper function to calculate maxHP based on class and CON modifier
-const calculateMaxHP = (characterClass, abilityMods) => {
-  const conMod = parseInt(abilityMods.CON, 10) || 0; // Convert CON modifier to integer
-  switch (characterClass) {
-    case 'Barbarian':
-      return 12 + conMod;
-    case 'Fighter':
-    case 'Paladin':
-    case 'Ranger':
-      return 10 + conMod;
-    case 'Bard':
-    case 'Cleric':
-    case 'Druid':
-    case 'Monk':
-    case 'Rogue':
-    case 'Warlock':
-      return 8 + conMod;
-    case 'Sorcerer':
-    case 'Wizard':
-      return 6 + conMod;
-    default:
-      return 0; // Default maxHP if class is not set
-  }
-};
+  const calculateMaxHP = (characterClass, abilityMods) => {
+    const hitDie = {
+      Barbarian: 12,
+      Bard: 8,
+      Cleric: 8,
+      Druid: 8,
+      Fighter: 10,
+      Monk: 8,
+      Paladin: 10,
+      Ranger: 10,
+      Rogue: 8,
+      Sorcerer: 6,
+      Warlock: 8,
+      Wizard: 6,
+    };
+    // Calculate maxHP based on class and CON modifier
+    // Level 1 HP is equal to the hit die + CON modifier
+    const level1HP = hitDie[characterClass] + abilityMods.CON;
+    // DEBUG
+    console.log('Level 1 HP:', level1HP, 'Hit Die:', hitDie[characterClass], 'CON Modifier:', abilityMods.CON);
+    return level1HP;
+  };
 
 
   // Function to update the character class
@@ -121,6 +127,7 @@ const calculateMaxHP = (characterClass, abilityMods) => {
       class: characterClass,
       abilityScores: updatedAbilityScores,
       abilityMods: calculateAbilityMods(updatedAbilityScores),
+      maxHP: calculateMaxHP(characterClass, calculateAbilityMods(updatedAbilityScores)),
     }));
   };
   return (
