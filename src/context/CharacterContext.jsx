@@ -59,8 +59,29 @@ const speciesToTraits = {
   Tiefling: ['Infernal Legacy', 'Otherworldly Presence'],
 };
 
+// Each background has 3 options for ability score bonuses
+const backgroundStats = {
+  Acolyte: {feat: "Magic Initiate (Cleric)", toolProf: "Calligrapher's Supplies", skillProfs: ['Insight', 'Religion'], abilityBonuses: ['INT', 'WIS', 'CHA']},
+  Artisan: {feat: "Crafter", toolProf: "Artisan's Tools", skillProfs: ['Investigation', 'Persuasion'], abilityBonuses: ['STR', 'DEX', 'INT']},
+  Charlatan: {feat: "Skilled", toolProf: "Forgery Kit", skillProfs: ['Deception', 'Sleight of Hand'], abilityBonuses: ['DEX', 'CON', 'CHA']},
+  Criminal: {feat: "Alert", toolProf: "Thieves' Tools", skillProfs: ['Sleight of Hand', 'Stealth'], abilityBonuses: ['DEX', 'CON', 'INT']},
+  Entertainer: {feat: "Musician", toolProf: "Musical Instrument", skillProfs: ['Acrobatics', 'Performance'], abilityBonuses: ['STR', 'DEX', 'CHA']},
+  Farmer: {feat: "Tough", toolProf: "Carpenter's Tools", skillProfs: ['Animal Handling', 'Nature'], abilityBonuses: ['STR', 'CON', 'WIS']},
+  Guard: {feat: "Alert", toolProf: "Gaming Set", skillProfs: ['Athletics', 'Perception'], abilityBonuses: ['STR', 'INT', 'WIS']},
+  Guide: {feat: "Magic Initiate (Druid)", toolProf: "Cartographer's Tools", skillProfs: ['Stealth', 'Survival'], abilityBonuses: ['DEX', 'CON', 'WIS']},
+  Hermit: {feat: "Healer", toolProf: "Herbalism Kit", skillProfs: ['Medicine', 'Religion'], abilityBonuses: ['CON', 'WIS', 'CHA']},
+  Merchant: {feat: "Lucky", toolProf: "Navigator's Tools", skillProfs: ['Animal Handling', 'Persuasion'], abilityBonuses: ['CON', 'INT', 'CHA']},
+  Noble: {feat: "Skilled", toolProf: "Gaming Set", skillProfs: ['History', 'Persuasion'], abilityBonuses: ['STR', 'INT', 'CHA']},
+  Sage: {feat: "Magic Initiate (Wizard)", toolProf: "Calligrapher's Supplies", skillProfs: ['Arcana', 'History'], abilityBonuses: ['CON', 'INT', 'WIS']},
+  Sailor: {feat: "Tavern Brawler", toolProf: "Navigator's Tools", skillProfs: ['Acrobatics', 'Perception'], abilityBonuses: ['STR', 'DEX', 'WIS']},
+  Scribe: {feat: "Skilled", toolProf: "Calligrapher's Supplies", skillProfs: ['Investigation', 'Perception'], abilityBonuses: ['DEX', 'INT', 'WIS']},
+  Soldier: {feat: "Savage Attacker", toolProf: "Gaming Set", skillProfs: ['Athletics', 'Intimidation'], abilityBonuses: ['STR', 'DEX', 'CON']},
+  Wayfarer: {feat: "Lucky", toolProf: "Thieves' Tools", skillProfs: ['Insight', 'Stealth'], abilityBonuses: ['DEX', 'WIS', 'CHA']},
+}
+
 // Create the provider component to wrap the app
 export const CharacterProvider = ({ children }) => {
+
   // State to hold character details
   const [character, setCharacter] = useState({
     class: '',
@@ -91,8 +112,8 @@ export const CharacterProvider = ({ children }) => {
     return mods;
   };
 
-  // Helper function to calculate maxHP based on class and CON modifier
-  const calculateMaxHP = (characterClass, abilityMods) => {
+  // Helper function to calculate maxHP 
+  const calculateMaxHP = (characterClass, conModifier) => {
     const hitDie = {
       Barbarian: 12,
       Bard: 8,
@@ -108,10 +129,9 @@ export const CharacterProvider = ({ children }) => {
       Wizard: 6,
     };
     // Level 1 HP is equal to class hit die + CON modifier
-    const level1HP = hitDie[characterClass] + abilityMods.CON;
+    const level1HP = hitDie[characterClass] + conModifier;
     return level1HP;
   };
-
 
   // Function to update the character class
   const setCharacterClass = (characterClass) => {
@@ -122,7 +142,8 @@ export const CharacterProvider = ({ children }) => {
       class: characterClass,
       abilityScores: updatedAbilityScores,
       abilityMods: calculateAbilityMods(updatedAbilityScores),
-      maxHP: calculateMaxHP(characterClass, calculateAbilityMods(updatedAbilityScores)),
+      maxHP: calculateMaxHP(characterClass, calculateAbilityMods(updatedAbilityScores).CON),
+      armorClass: 10 + calculateAbilityMods(updatedAbilityScores).DEX, // update later
     }));
   };
   return (
