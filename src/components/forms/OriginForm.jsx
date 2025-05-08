@@ -7,6 +7,8 @@ export default function OriginForm() {
     // State to track selected species and subspecies
     const [selectedSpecies, setSelectedSpecies] = useState('');
     const [selectedSubspecies, setSelectedSubspecies] = useState('');
+    const [selectedBackground, setSelectedBackground] = useState('');
+    const [abilityAllocation, setAbilityAllocation] = useState({});
 
     const handleSpeciesChange = (event) => {
         const species = event.target.value;
@@ -32,9 +34,10 @@ export default function OriginForm() {
         }));
     };
 
-    /* TODO: After assigning ability scores, adjust them according to your background. 
-    Background lists three abilities; increase one of those scores by 2 and a different one by 1,
-    or increase all three by 1. None of these increases can raise a score above 20.
+    /* TODO: After selecting a background, user decides which ability scores to improve. 
+    Each background has three possible abilities; user can choose to increase 
+    one of those scores by 2 and a different one by 1, or increase all three by 1. 
+    None of these increases can raise a score above 20.
     */
     const handleBackgroundChange = (event) => {
         const background = event.target.value;
@@ -107,6 +110,7 @@ export default function OriginForm() {
                     </select>
                 </div>
                 <div className="col-6">
+                    
                 </div>
             </div>
             <div className="row">

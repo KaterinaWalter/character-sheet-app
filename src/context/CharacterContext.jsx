@@ -147,7 +147,7 @@ export const CharacterProvider = ({ children }) => {
     }));
   };
   return (
-    <CharacterContext.Provider value={{ character, setCharacter, setCharacterClass, speciesToSubspecies, speciesToTraits, speciesStats }}>
+    <CharacterContext.Provider value={{ character, setCharacter, setCharacterClass, speciesToSubspecies, speciesToTraits, speciesStats, backgroundStats }}>
       {children}
     </CharacterContext.Provider>
   );
