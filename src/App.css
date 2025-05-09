@@ -63,6 +63,14 @@ footer a {
   margin-bottom: 5px; 
 }
 
+#forms-container {
+  border: 2px solid black;
+  border-radius: .375rem;
+  background: whitesmoke;
+  padding: 5px 10px;
+  margin-bottom: 5px; 
+}
+
 .card-img-top {
   color: inherit !important;
 }
@@ -91,7 +99,15 @@ footer a {
   padding-top: 10px;
 }
 
-
+.description {
+  font-size: 0.85rem;
+  background: white;
+  color: var(--grey-lt);
+  border: 1px solid var(--grey-lt);
+  border-radius: .375rem;
+  padding: 5px;
+  margin-top: 8px;
+}
 
 /*
 #class-overview-container {

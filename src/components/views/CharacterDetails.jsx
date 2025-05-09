@@ -37,13 +37,14 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <li><strong>Armor Class: </strong>{character.armorClass || 0}</li>
                             <li><strong>Max HP: </strong>{character.maxHP || 0}</li>
                             <li><strong>Speed: </strong>{character.speed || 0} ft.</li>
+                            {character.darkvision > 0 && (
                             <li><strong>Darkvision: </strong>{character.darkvision || 0} ft.</li>
+                            )}
                             </ul>
                         </div>
                         <div className="col-8">
                             <ul className="list-unstyled">
                             <li><strong>Background: </strong>{character.background || "None"}</li>
-                            <li><strong>Alignment: </strong>{character.alignment || "None"}</li>
                             <li><strong>Traits: </strong>
                             <span>{character.traits.length > 0 ? character.traits.join(', ') : 'None'}</span>
                             </li>

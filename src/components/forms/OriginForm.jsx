@@ -4,14 +4,6 @@ import { CharacterContext } from '../../context/CharacterContext';
 export default function OriginForm() {
     const { setCharacter, speciesToSubspecies, speciesStats, backgroundStats } = useContext(CharacterContext);
 
-    const handleAlignmentChange = (event) => {
-        const alignment = event.target.value;
-        setCharacter((prevCharacter) => ({
-            ...prevCharacter,
-            alignment,
-        }));
-    };
-
     // State to track selected species and subspecies
     const [selectedSpecies, setSelectedSpecies] = useState('');
     const [selectedSubspecies, setSelectedSubspecies] = useState('');
@@ -25,6 +17,7 @@ export default function OriginForm() {
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
             species,
+            size: speciesStats[species]?.size || '',
             speed: speciesStats[species]?.speed || 0, // Set speed based on species
             darkvision: speciesStats[species]?.darkvision || 0, // Set darkvision based on species
             traits: speciesStats[species]?.traits || [], // Add traits based on species
@@ -37,28 +30,22 @@ export default function OriginForm() {
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
             species: subspecies, // Replace species with subspecies
+            size: speciesStats[subspecies]?.size || '', // Set size based on subspecies
             speed: speciesStats[subspecies]?.speed || 0, // Set speed based on subspecies
             darkvision: speciesStats[subspecies]?.darkvision || 0, // Set darkvision based on subspecies
             traits: speciesStats[subspecies]?.traits || [], // Add traits based on subspecies
         }));
     };
 
-    const handleBackgroundChange = (event) => {
-        const background = event.target.value;
-        setCharacter((prevCharacter) => ({
-            ...prevCharacter,
-            background,
-        }));
-    };
-
     /* TODO: After selecting a background, user decides which ability scores to improve. 
     Each background has three possible abilities; user can choose to increase 
     one of those scores by 2 and a different one by 1, or increase all three by 1. 
-    None of these increases can raise a score above 20.
+    None of these increases can raise a score above 20.*/
 
     const handleBackgroundChange = (event) => {
         const background = event.target.value;
         setSelectedBackground(background);
+        setAbilityAllocation({}); // Reset ability allocation when background changes
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
             background,
@@ -73,21 +60,22 @@ export default function OriginForm() {
     };
 
     const handleAbilityAllocationSubmit = () => {
-        const updatedAbilityScores = { ...character.abilityScores };
-        for (const [ability, points] of Object.entries(abilityAllocation)) {
-            updatedAbilityScores[ability] += points;
-        }
-        setCharacter((prevCharacter) => ({
-            ...prevCharacter,
-            abilityScores: updatedAbilityScores,
-            abilityMods: calculateAbilityMods(updatedAbilityScores),
-        }));
+        const updatedAbilityScores = { ...abilityAllocation };
+        setCharacter((prevCharacter) => {
+            const updatedScores = { ...prevCharacter.abilityScores };
+            for (const [ability, points] of Object.entries(updatedAbilityScores)) {
+                updatedScores[ability] += points;
+            }
+            return {
+                ...prevCharacter,
+                abilityScores: updatedScores,
+            };
+        });
     };
-    */
 
     return (
         <div>
-            <h3 className="text-center">Choose Origin</h3>
+            <h3 className="text-center">1. Choose Origin:</h3>
             <div className="row">
                 <div className="col-6">
                     <label htmlFor="species">Species</label>
@@ -116,55 +104,48 @@ export default function OriginForm() {
                     </select>
                 </div>
                 )}
+                {selectedSubspecies && (
+                <div className="col-12">
+                    <p className="description">{speciesStats[selectedSubspecies].description}</p>
+                </div>
+                )}
+                {selectedSpecies && !selectedSubspecies && (
+                <div className="col-12">
+                    <p className="description">{speciesStats[selectedSpecies].description}</p>
+                </div>
+                )}
             </div>
+            <hr/>
             <div className="row">
                 <div className="col-6">
                     <label htmlFor="background">Background</label>
                     <select id="background" className="form-select" onChange={handleBackgroundChange}>
                         <option value="">Select a background</option>
-                        <option value="Acolyte">Acolyte</option>
-                        <option value="Charlatan">Charlatan</option>
-                        <option value="Criminal">Criminal</option>
-                        <option value="Entertainer">Entertainer</option>
-                        <option value="Farmer">Farmer</option>
-                        <option value="Guard">Guard</option>
-                        <option value="Guide">Guide</option>
-                        <option value="Hermit">Hermit</option>
-                        <option value="Merchant">Merchant</option>
-                        <option value="Noble">Noble</option>
-                        <option value="Sage">Sage</option>
-                        <option value="Sailor">Sailor</option>
-                        <option value="Scribe">Scribe</option>
-                        <option value="Soldier">Soldier</option>
-                        <option value="Wayfarer">Wayfarer</option>
+                        {Object.keys(backgroundStats).map((background) => (
+                            <option key={background} value={background}>{background}</option>
+                        ))}
                     </select>
+                    {selectedBackground && (
+                        <p className="description">{backgroundStats[selectedBackground].description}</p>
+                    )}
                 </div>
                 {selectedBackground && (
-                <div className="col-6">
-                    <label>Allocate Ability Bonuses</label>
-                    <p>Distribute 3 points among the following:</p>
-                </div>
+                    <div className="col-6">
+                        <label>Ability Score Bonuses</label>
+                        <p><em>Your background grants 3 bonus points to distribute among the following abilities:</em></p>
+                        <div className="row">
+                        {backgroundStats[selectedBackground].abilityBonuses.map((ability) => (
+                            <div key={ability} className="col-4">
+                                <label htmlFor={`ability-${ability}`}>{ability}</label>
+                                <input id={`ability-${ability}`} type="number" className="form-control" min="0" max="2" value={abilityAllocation[ability] || 0} onChange={(e) => handleAbilityAllocationChange(ability, parseInt(e.target.value) || 0)}/>
+                            </div>
+                        ))}
+                        </div>
+                        <div className="row m-auto">
+                            <button className="btn btn-primary mt-2" onClick={handleAbilityAllocationSubmit}>Apply Points</button>
+                        </div>
+                    </div>
                 )}
-            </div>
-            <div className="row">
-                <div className="col-6">
-                    <label htmlFor="alignment">Moral Alignment</label>
-                    <select id="alignment" className="form-select" onChange={handleAlignmentChange}>
-                        <option value="">Select an alignment</option>
-                        <option value="Lawful Good">Lawful Good</option>
-                        <option value="Neutral Good">Neutral Good</option>
-                        <option value="Chaotic Good">Chaotic Good</option>
-                        <option value="Lawful Neutral">Lawful Neutral</option>
-                        <option value="True Neutral">True Neutral</option>
-                        <option value="Chaotic Neutral">Chaotic Neutral</option>
-                        <option value="Lawful Evil">Lawful Evil</option>
-                        <option value="Neutral Evil">Neutral Evil</option>
-                        <option value="Chaotic Evil">Chaotic Evil</option>
-                        <option value="Unaligned">Unaligned</option>
-                    </select>
-                </div>
-                <div className="col-6">
-                </div>
             </div>
         </div>
     );
