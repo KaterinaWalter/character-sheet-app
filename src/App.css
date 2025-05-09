@@ -15,7 +15,7 @@
   --rogue: #555752;
   --sorcerer: #bf4141;
   --warlock: #6f57dd;
-  --wizard: #895ca4;
+  --wizard: #874da8;
   --barbarian-grad: linear-gradient(180deg, #fdd8cd 0%, var(--barbarian) 90%);
   --bard-grad: linear-gradient(180deg, #fbd7fc 0%, var(--bard) 90%);
   --cleric-grad: linear-gradient(180deg, #ddecfb 0%, var(--cleric) 90%);
@@ -66,7 +66,7 @@ footer a {
 #forms-container {
   border: 2px solid black;
   border-radius: .375rem;
-  background: whitesmoke;
+  background: white;
   padding: 5px 10px;
   margin-bottom: 5px; 
 }
@@ -101,13 +101,31 @@ footer a {
 
 .description {
   font-size: 0.85rem;
-  background: white;
+  background: whitesmoke;
   color: var(--grey-lt);
-  border: 1px solid var(--grey-lt);
+  border: 1px solid #DEE2E6;
   border-radius: .375rem;
   padding: 5px;
   margin-top: 8px;
 }
+
+.ability {
+  background: white;
+  border: 1px solid var(--grey-md);
+  border-radius: .375rem;
+}
+
+.ability-label {
+  font-family: "IM Fell English SC" !important;
+  font-weight: bold;
+}
+.ability-score {
+  font-size: 1.5rem;
+}
+.ability-mod {
+  color: var(--grey-lt) !important;
+}
+
 
 /*
 #class-overview-container {

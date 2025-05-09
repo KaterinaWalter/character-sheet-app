@@ -133,7 +133,7 @@ export default function OriginForm() {
                     <div className="col-6">
                         <label>Ability Score Bonuses</label>
                         <p><em>Your background grants 3 bonus points to distribute among the following abilities:</em></p>
-                        <div className="row">
+                        <div className="row text-center m-auto">
                         {backgroundStats[selectedBackground].abilityBonuses.map((ability) => (
                             <div key={ability} className="col-4">
                                 <label htmlFor={`ability-${ability}`}>{ability}</label>
