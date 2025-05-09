@@ -5,6 +5,7 @@ import OriginForm from "../forms/OriginForm";
 export default function CharacterDetails({ onNext, onBack }) {
     const { character } = useContext(CharacterContext);
     console.log('CHARACTER CONTEXT:', character);
+    
     return (
         <div className="container-fluid text-center m-auto">
             <div className="d-flex justify-content-between">

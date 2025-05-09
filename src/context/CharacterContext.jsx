@@ -19,44 +19,51 @@ const recAbilityScores = {
   Wizard: { STR: 8, DEX: 12, CON: 13, INT: 15, WIS: 14, CHA: 10 },
 };
 
-// Species-specific stats (speed, darkvision, AC?, HP?)
-const speciesStats = {
-  'Aasimar': { speed: 30, darkvision: 60 },
-  'Dragonborn': { speed: 30, darkvision: 60},
-  'Dwarf': { speed: 30, darkvision: 120},
-  'Elf': { speed: 30, darkvision: 60 },
-  'Drow': { speed: 30, darkvision: 120 },
-  'High Elf': { speed: 30, darkvision: 60 },
-  'Wood Elf': { speed: 35, darkvision: 60 },
-  'Gnome': { speed: 30, darkvision: 60},
-  'Goliath': { speed: 35, darkvision: 0},
-  'Halfling': { speed: 30, darkvision: 0},
-  'Human': { speed: 30, darkvision: 0},
-  'Orc': { speed: 30, darkvision: 120},
-  'Tiefling': { speed: 30, darkvision: 60},
-};
-
 // Mapping of species to subspecies
 const speciesToSubspecies = {
   Dragonborn: ['Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn', 'Bronze Dragonborn', 'Copper Dragonborn', 'Gold Dragonborn', 'Green Dragonborn', 'Red Dragonborn', 'Silver Dragonborn', 'White Dragonborn'],
   Elf: ['High Elf', 'Wood Elf', 'Drow'],
   Gnome: ['Forest Gnome', 'Rock Gnome'],
   Goliath: ['Cloud Giant', 'Fire Giant', 'Frost Giant', 'Hill Giant', 'Stone Giant', 'Storm Giant'],
-  Tiefling: ['Abyssal Tiefling', 'Chtonian Tiefling', 'Infernal Tiefling'],
+  Tiefling: ['Abyssal Tiefling', 'Chthonic Tiefling', 'Infernal Tiefling'],
 };
 
-// Mapping of species to traits
-const speciesToTraits = {
-  Aasimar: ['Celestial Resistance', 'Healing Hands', 'Light Bearer', 'Celestial Revelation'],
-  Dragonborn: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance', 'Draconic Flight'],
-  Dwarf: ['Dwarven Resilience', 'Dwarven Toughness', 'Stonecunning'],
-  Elf: ['Elven Lineage', 'Fey Ancestry', 'Keen Senses', 'Trance'],
-  Gnome: ['Gnomish Cunning', 'Gnomish Lineage'],
-  Goliath: ['Giant Ancestry', 'Large Form', 'Powerful Build'],
-  Halfling: ['Brave', 'Halfling Nimbleness', 'Luck', 'Naturally Stealthy'],
-  Human: ['Resourceful', 'Skillful', 'Versatile'],
-  Orc: ['Adrenaline Rush', 'Relentless Endurance'],
-  Tiefling: ['Infernal Legacy', 'Otherworldly Presence'],
+// Species-specific stats (speed, darkvision, extra traits?)
+const speciesStats = {
+  'Aasimar': { size: 'M', speed: 30, darkvision: 60, traits: ['Celestial Resistance (Necrotic, Radiant)', 'Healing Hands', 'Light Bearer (Cantrip - Light)', 'Celestial Revelation'] },
+  'Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance', 'Draconic Flight'] },
+  'Black Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Acid)', 'Draconic Flight'] },
+  'Blue Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Lightning)', 'Draconic Flight'] },
+  'Brass Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Fire)', 'Draconic Flight'] },
+  'Bronze Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Lightning)', 'Draconic Flight'] },
+  'Copper Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Acid)', 'Draconic Flight'] },
+  'Gold Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Fire)', 'Draconic Flight'] },
+  'Green Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Poison)', 'Draconic Flight'] },
+  'Red Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Fire)', 'Draconic Flight'] },
+  'Silver Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Cold)', 'Draconic Flight'] },
+  'White Dragonborn': { size: 'M', speed: 30, darkvision: 60, traits: ['Dragon Ancestry', 'Breath Weapon', 'Damage Resistance (Cold)', 'Draconic Flight'] },
+  'Dwarf': { size: 'M', speed: 30, darkvision: 120, traits: ['Dwarven Resilience - Poison Resistance', 'Dwarven Toughness', 'Stonecunning (Bonus Action - Tremorsense)'] },
+  'Elf': { size: 'M', speed: 30, darkvision: 60, traits: ['Elven Lineage', 'Fey Ancestry', 'Keen Senses', 'Trance'] },
+  'Drow': { size: 'M', speed: 30, darkvision: 120, traits: ['Elven Lineage (Cantrip - Dancing Lights)', 'Fey Ancestry', 'Keen Senses', 'Trance'] },
+  'High Elf': { size: 'M', speed: 30, darkvision: 60, traits: ['Elven Lineage (Cantrip - Prestidigitation)', 'Fey Ancestry', 'Keen Senses', 'Trance'] },
+  'Wood Elf': { size: 'M', speed: 35, darkvision: 60, traits: ['Elven Lineage (Cantrip - Druidcraft)', 'Fey Ancestry', 'Keen Senses', 'Trance'] },
+  'Gnome': { size: 'S', speed: 30, darkvision: 60, traits: ['Gnomish Cunning', 'Gnomish Lineage'] },
+  'Forest Gnome': { size: 'S', speed: 30, darkvision: 60, traits: ['Gnomish Cunning', 'Gnomish Lineage (Cantrip - Minor Illusion, Prepared Spell - Speak with Animals'] },
+  'Rock Gnome': { size: 'S', speed: 30, darkvision: 60, traits: ['Gnomish Cunning', 'Gnomish Lineage (Cantrip - Mending, Cantrip - Prestidigitation'] },
+  'Goliath': { size: 'L', speed: 35, darkvision: 0, traits: ['Giant Ancestry', 'Large Form', 'Powerful Build'] },
+  'Cloud Giant': { size: 'L', speed: 35, darkvision: 0, traits: ["Giant Ancestry (Cloud's Jaunt)", 'Large Form', 'Powerful Build'] },
+  'Fire Giant': { size: 'L', speed: 35, darkvision: 0, traits: ["Giant Ancestry (Fire's Burn)", 'Large Form', 'Powerful Build'] },
+  'Frost Giant': { size: 'L', speed: 35, darkvision: 0, traits: ["Giant Ancestry (Frost's Chill)", 'Large Form', 'Powerful Build'] },
+  'Hill Giant': { size: 'L', speed: 35, darkvision: 0, traits: ["Giant Ancestry (Hill's Tumble)", 'Large Form', 'Powerful Build'] },
+  'Stone Giant': { size: 'L', speed: 35, darkvision: 0, traits: ["Giant Ancestry (Stone's Endurance)", 'Large Form', 'Powerful Build'] },
+  'Storm Giant': { size: 'L', speed: 35, darkvision: 0, traits: ["Giant Ancestry (Storm's Thunder)", 'Large Form', 'Powerful Build'] },
+  'Halfling': { size: 'S', speed: 30, darkvision: 0, traits: ['Brave', 'Halfling Nimbleness', 'Luck', 'Naturally Stealthy'] },
+  'Human': { size: 'M', speed: 30, darkvision: 0, traits: ['Resourceful', 'Skillful', 'Versatile'] },
+  'Orc': { size: 'M', speed: 30, darkvision: 120, traits: ['Adrenaline Rush (Bonus Action - Dash)', 'Relentless Endurance'] },
+  'Tiefling': { size: 'M', speed: 30, darkvision: 60, traits: ['Infernal Legacy', 'Otherworldly Presence'] },
+  'Abyssal Tiefling': { size: 'M', speed: 30, darkvision: 60, traits: ['Infernal Legacy (Damage Resistance - Poison, Cantrip - Poison Spray)', 'Otherworldly Presence (Cantrip - Thaumaturgy)'] },
+  'Chthonic Tiefling': { size: 'M', speed: 30, darkvision: 60, traits: ['Infernal Legacy (Damage Resistance - Necrotic, Cantrip - Chill Touch)', 'Otherworldly Presence (Cantrip - Thaumaturgy)'] },
+  'Infernal Tiefling': { size: 'M', speed: 30, darkvision: 60, traits: ['Infernal Legacy (Damage Resistance - Fire, Cantrip - Fire Bolt)', 'Otherworldly Presence (Cantrip - Thaumaturgy)'] },
 };
 
 // Each background has 3 options for ability score bonuses
@@ -91,6 +98,7 @@ export const CharacterProvider = ({ children }) => {
     traits: [],
     armorClass: 0,
     maxHP: 0,
+    size: 'M',
     speed: 0,
     darkvision: 0,
     abilityScores: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
@@ -147,7 +155,7 @@ export const CharacterProvider = ({ children }) => {
     }));
   };
   return (
-    <CharacterContext.Provider value={{ character, setCharacter, setCharacterClass, speciesToSubspecies, speciesToTraits, speciesStats, backgroundStats }}>
+    <CharacterContext.Provider value={{ character, setCharacter, setCharacterClass, speciesToSubspecies, speciesStats, backgroundStats }}>
       {children}
     </CharacterContext.Provider>
   );

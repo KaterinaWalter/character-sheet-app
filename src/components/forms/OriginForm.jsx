@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 
 export default function OriginForm() {
-    const { setCharacter, speciesToSubspecies, speciesToTraits, speciesStats } = useContext(CharacterContext);
+    const { setCharacter, speciesToSubspecies, speciesStats, backgroundStats } = useContext(CharacterContext);
 
     const handleAlignmentChange = (event) => {
         const alignment = event.target.value;
@@ -27,7 +27,7 @@ export default function OriginForm() {
             species,
             speed: speciesStats[species]?.speed || 0, // Set speed based on species
             darkvision: speciesStats[species]?.darkvision || 0, // Set darkvision based on species
-            traits: speciesToTraits[species] || [], // Add traits based on species
+            traits: speciesStats[species]?.traits || [], // Add traits based on species
         }));
     };
 
@@ -39,6 +39,7 @@ export default function OriginForm() {
             species: subspecies, // Replace species with subspecies
             speed: speciesStats[subspecies]?.speed || 0, // Set speed based on subspecies
             darkvision: speciesStats[subspecies]?.darkvision || 0, // Set darkvision based on subspecies
+            traits: speciesStats[subspecies]?.traits || [], // Add traits based on subspecies
         }));
     };
 
