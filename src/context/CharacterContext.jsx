@@ -163,6 +163,7 @@ export const CharacterProvider = ({ children }) => {
     species: '',
     background: '',
     traits: [],
+    profs: [],
     armorClass: 0,
     maxHP: 0,
     size: '',
@@ -170,6 +171,8 @@ export const CharacterProvider = ({ children }) => {
     darkvision: 0,
     abilityScores: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
     abilityMods: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
+    savingThrows: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
+    skillProfs: {'Acrobatics': 0, 'Animal Handling': 0, 'Arcana': 0, 'Athletics': 0, 'Deception': 0, 'History': 0, 'Insight': 0, 'Intimidation': 0, 'Investigation': 0, 'Medicine': 0, 'Nature': 0, 'Perception': 0, 'Performance': 0, 'Persuasion': 0, 'Religion': 0, 'Sleight of Hand': 0, 'Stealth': 0, 'Survival': 0 },
   });
 
   // Helper function to calculate ability modifiers

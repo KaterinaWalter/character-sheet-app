@@ -52,6 +52,7 @@ export default function CharacterDetails({ onNext, onBack }) {
                             </ul>
                         </div>
                     </div>
+                    <br/>
                     <h3 className="fs-5 fw-bold text-center">Ability Scores:</h3>
                     <div className="row p-2">
                         <div className="col-2 text-center d-flex flex-column ability">
@@ -83,6 +84,34 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <span className="ability-label">CHA</span>
                             <span className="ability-score">{character.abilityScores['CHA'] || 0}</span>
                             <span className="ability-mod">{character.abilityMods['CHA'] >= 0 ? "+" : ""}{character.abilityMods['CHA'] || 0}</span>
+                        </div>
+                    </div>
+                    <br/>
+                    <h3 className="fs-5 fw-bold text-center">Saving Throws:</h3>
+                    <div className="row p-2">
+                        <div className="col-2 text-center d-flex flex-column ability">
+                            <span className="ability-label">STR</span>
+                            <span className="ability-mod">{character.savingThrows['STR'] >= 0 ? "+" : ""}{character.savingThrows['STR'] || 0}</span>
+                        </div>
+                        <div className="col-2 text-center d-flex flex-column ability">
+                            <span className="ability-label">DEX</span>
+                            <span className="ability-mod">{character.savingThrows['DEX'] >= 0 ? "+" : ""}{character.savingThrows['DEX'] || 0}</span>
+                        </div>
+                        <div className="col-2 text-center d-flex flex-column ability">
+                            <span className="ability-label">CON</span>
+                            <span className="ability-mod">{character.savingThrows['CON'] >= 0 ? "+" : ""}{character.savingThrows['CON'] || 0}</span>
+                        </div>
+                        <div className="col-2 text-center d-flex flex-column ability">
+                            <span className="ability-label">INT</span>
+                            <span className="ability-mod">{character.savingThrows['INT'] >= 0 ? "+" : ""}{character.savingThrows['INT'] || 0}</span>
+                        </div>
+                        <div className="col-2 text-center d-flex flex-column ability">
+                            <span className="ability-label">WIS</span>
+                            <span className="ability-mod">{character.savingThrows['WIS'] >= 0 ? "+" : ""}{character.savingThrows['WIS'] || 0}</span>
+                        </div>
+                        <div className="col-2 text-center d-flex flex-column ability">
+                            <span className="ability-label">CHA</span>
+                            <span className="ability-mod">{character.savingThrows['CHA'] >= 0 ? "+" : ""}{character.savingThrows['CHA'] || 0}</span>
                         </div>
                     </div>
                 </div>
