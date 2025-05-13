@@ -38,7 +38,7 @@ export default function CharacterDetails({ onNext, onBack }) {
                         <div className="col-7">
                             <ul className="list-unstyled">
                             <li><strong>Background: </strong>{character.background || "None"}</li>
-                            <li><strong>Traits: </strong>
+                            <li><strong>Species Traits: </strong>
                             <span>{character.traits.length > 0 ? character.traits.join(', ') : 'None'}</span>
                             </li>
                             <li><strong>Proficiencies: </strong>
