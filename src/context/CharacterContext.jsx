@@ -3,22 +3,6 @@ import React, { createContext, useState } from 'react';
 // Create the context to hold data to share between components
 export const CharacterContext = createContext();
 
-// Recommended ability scores for each class
-const recAbilityScores = {
-  Barbarian: { STR: 15, DEX: 13, CON: 14, INT: 10, WIS: 12, CHA: 8 },
-  Bard: { STR: 8, DEX: 14, CON: 12, INT: 13, WIS: 10, CHA: 15 },
-  Cleric: { STR: 14, DEX: 8, CON: 13, INT: 10, WIS: 15, CHA: 12 },
-  Druid: { STR: 8, DEX: 12, CON: 14, INT: 13, WIS: 15, CHA: 10 },
-  Fighter: { STR: 15, DEX: 14, CON: 13, INT: 8, WIS: 10, CHA: 12 },
-  Monk: { STR: 12, DEX: 15, CON: 13, INT: 10, WIS: 14, CHA: 8 },
-  Paladin: { STR: 15, DEX: 10, CON: 13, INT: 8, WIS: 12, CHA: 14 },
-  Ranger: { STR: 12, DEX: 15, CON: 13, INT: 8, WIS: 14, CHA: 10 },
-  Rogue: { STR: 12, DEX: 15, CON: 13, INT: 14, WIS: 10, CHA: 8 },
-  Sorcerer: { STR: 10, DEX: 13, CON: 14, INT: 8, WIS: 12, CHA: 15 },
-  Warlock: { STR: 8, DEX: 14, CON: 13, INT: 12, WIS: 10, CHA: 15 },
-  Wizard: { STR: 8, DEX: 12, CON: 13, INT: 15, WIS: 14, CHA: 10 },
-};
-
 // Mapping of species to subspecies
 const speciesToSubspecies = {
   Dragonborn: ['Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn', 'Bronze Dragonborn', 'Copper Dragonborn', 'Gold Dragonborn', 'Green Dragonborn', 'Red Dragonborn', 'Silver Dragonborn', 'White Dragonborn'],
@@ -154,6 +138,39 @@ const backgroundStats = {
   Wayfarer: {feat: "Lucky", toolProf: "Thieves' Tools", skillProfs: ['Insight', 'Stealth'], abilityBonuses: ['DEX', 'WIS', 'CHA'], description: "You grew up on the streets surrounded by similarly ill-fated castoffs, a few of them friends and a few of them rivals. You slept where you could and did odd jobs for food. At times, when the hunger became unbearable, you resorted to theft. Still, you never lost your pride and never abandoned hope. Fate is not yet finished with you."},
 }
 
+// Class-specific stats (hitDie, weapon/armor proficiencies, saving throw proficiencies)
+// Skill proficiencies in ClassSpecificForm.jsx
+const classStats = {
+  Barbarian: { hitDie: 12, profs: ['Light Armor', 'Medium Armor', 'Shields', 'Simple Weapons', 'Martial Weapons'], savingThrows: ['STR', 'CON'], description: "A Fierce Warrior of Primal Rage" },
+  Bard: { hitDie: 8, profs: ['Light Armor', 'Simple Weapons'], savingThrows: ['DEX', 'CHA'], description: "An Inspiring Performer of Music, Dance, and Magic" },
+  Cleric: { hitDie: 8, profs: ['Light Armor', 'Medium Armor', 'Shields', 'Simple Weapons'], savingThrows: ['WIS', 'CHA'], description: "A Miraculous Priest of Divine Power" },
+  Druid: { hitDie: 8, profs: ['Light Armor', 'Shields', 'Simple Weapons'], savingThrows: ['INT', 'WIS'], description: "A Nature Priest of Primal Power" },
+  Fighter: { hitDie: 10, profs: ['Light Armor', 'Medium Armor', 'Heavy Armor', 'Shields', 'Simple Weapons', 'Martial Weapons'], savingThrows: ['STR', 'CON'], description: "A Master of All Arms and Armor" },
+  Monk: { hitDie: 8, profs: ['Simple Weapons', 'Martial Weapons (Light only)'], savingThrows: ['STR', 'DEX'], description: "A Martial Artist of Supernatural Focus" },
+  Paladin: { hitDie: 10, profs: ['Light Armor', 'Medium Armor', 'Heavy Armor', 'Shields', 'Simple Weapons', 'Martial Weapons'], savingThrows: ['WIS', 'CHA'], description: "A Devout Warrior of Sacred Oaths" },
+  Ranger: { hitDie: 10, profs: ['Light Armor', 'Medium Armor', 'Shields', 'Simple Weapons', 'Martial Weapons'], savingThrows: ['STR', 'DEX'], description: "A Wandering Warrior Imbued with Primal Magic" },
+  Rogue: { hitDie: 8, profs: ['Light Armor', 'Simple Weapons', 'Martial Weapons (Finesse or Light only)'], savingThrows: ['DEX', 'INT'], description: "A Dexterous Expert in Stealth and Subterfuge" },
+  Sorcerer: { hitDie: 6, profs: ['Simple Weapons'], savingThrows: ['CON', 'CHA'], description: "A Dazzling Mage Filled with Innate Magic"} ,
+  Warlock: { hitDie: 8, profs: ['Light Armor', 'Simple Weapons'], savingThrows: ['WIS', 'CHA'], description: "An Occultist Empowered by Otherworldly Pacts" },
+  Wizard: { hitDie: 6, profs: ['Simple Weapons'], savingThrows: ['INT', 'WIS'], description: "A Scholarly Magic-User of Arcane Power" },
+}
+
+// Recommended ability scores for each class
+const recAbilityScores = {
+  Barbarian: { STR: 15, DEX: 13, CON: 14, INT: 10, WIS: 12, CHA: 8 },
+  Bard: { STR: 8, DEX: 14, CON: 12, INT: 13, WIS: 10, CHA: 15 },
+  Cleric: { STR: 14, DEX: 8, CON: 13, INT: 10, WIS: 15, CHA: 12 },
+  Druid: { STR: 8, DEX: 12, CON: 14, INT: 13, WIS: 15, CHA: 10 },
+  Fighter: { STR: 15, DEX: 14, CON: 13, INT: 8, WIS: 10, CHA: 12 },
+  Monk: { STR: 12, DEX: 15, CON: 13, INT: 10, WIS: 14, CHA: 8 },
+  Paladin: { STR: 15, DEX: 10, CON: 13, INT: 8, WIS: 12, CHA: 14 },
+  Ranger: { STR: 12, DEX: 15, CON: 13, INT: 8, WIS: 14, CHA: 10 },
+  Rogue: { STR: 12, DEX: 15, CON: 13, INT: 14, WIS: 10, CHA: 8 },
+  Sorcerer: { STR: 10, DEX: 13, CON: 14, INT: 8, WIS: 12, CHA: 15 },
+  Warlock: { STR: 8, DEX: 14, CON: 13, INT: 12, WIS: 10, CHA: 15 },
+  Wizard: { STR: 8, DEX: 12, CON: 13, INT: 15, WIS: 14, CHA: 10 },
+};
+
 // Create the provider component to wrap the app
 export const CharacterProvider = ({ children }) => {
 
@@ -162,13 +179,13 @@ export const CharacterProvider = ({ children }) => {
     class: '',
     species: '',
     background: '',
-    traits: [],
-    profs: [],
+    size: '',
     armorClass: 0,
     maxHP: 0,
-    size: '',
     speed: 0,
     darkvision: 0,
+    traits: [],
+    profs: [],
     abilityScores: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
     abilityMods: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
     savingThrows: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
@@ -190,24 +207,10 @@ export const CharacterProvider = ({ children }) => {
     return mods;
   };
 
-  // Helper function to calculate maxHP 
+  // Helper function to calculate maxHP based on class and constitution
   const calculateMaxHP = (characterClass, conModifier) => {
-    const hitDie = {
-      Barbarian: 12,
-      Bard: 8,
-      Cleric: 8,
-      Druid: 8,
-      Fighter: 10,
-      Monk: 8,
-      Paladin: 10,
-      Ranger: 10,
-      Rogue: 8,
-      Sorcerer: 6,
-      Warlock: 8,
-      Wizard: 6,
-    };
     // Level 1 HP is equal to class hit die + CON modifier
-    const level1HP = hitDie[characterClass] + conModifier;
+    const level1HP = classStats[characterClass].hitDie + conModifier;
     return level1HP;
   };
 
@@ -221,7 +224,8 @@ export const CharacterProvider = ({ children }) => {
       abilityScores: updatedAbilityScores,
       abilityMods: calculateAbilityMods(updatedAbilityScores),
       maxHP: calculateMaxHP(characterClass, calculateAbilityMods(updatedAbilityScores).CON),
-      armorClass: 10 + calculateAbilityMods(updatedAbilityScores).DEX, // update later
+      armorClass: 10 + calculateAbilityMods(updatedAbilityScores).DEX, // TODO: update based on armor
+      profs: classStats[characterClass].profs,
     }));
   };
   return (

@@ -37,10 +37,10 @@ export default function OriginForm() {
         }));
     };
 
-    /* TODO: After selecting a background, user decides which ability scores to improve. 
+    /* After selecting a background, user decides which ability scores to improve. 
     Each background has three possible abilities; user can choose to increase 
     one of those scores by 2 and a different one by 1, or increase all three by 1. 
-    None of these increases can raise a score above 20.*/
+    None of these increases can raise a score above 20. */
 
     const handleBackgroundChange = (event) => {
         const background = event.target.value;
@@ -74,8 +74,8 @@ export default function OriginForm() {
     };
 
     return (
-        <div>
-            <h3 className="text-center">1. Choose Origin:</h3>
+        <div className="form-section p-2 pb-3 mb-3">
+            <h2 className="text-center">Character Origin:</h2>
             <div className="row">
                 <div className="col-6">
                     <label htmlFor="species">Species</label>

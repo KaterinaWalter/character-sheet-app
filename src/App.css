@@ -58,17 +58,13 @@ footer a {
 #character-container {
   border: 2px solid black;
   border-radius: .375rem;
-  background: white;
-  padding: 5px 10px;
-  margin-bottom: 5px; 
+  background: white; 
 }
 
-#forms-container {
+.form-section {
   border: 2px solid black;
   border-radius: .375rem;
   background: white;
-  padding: 5px 10px;
-  margin-bottom: 5px; 
 }
 
 .card-img-top {

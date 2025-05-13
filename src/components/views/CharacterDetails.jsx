@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 import OriginForm from "../forms/OriginForm";
+import ClassSpecificForm from "../forms/ClassSpecificForm";
 
 export default function CharacterDetails({ onNext, onBack }) {
     const { character } = useContext(CharacterContext);
@@ -16,10 +17,10 @@ export default function CharacterDetails({ onNext, onBack }) {
             <div className="row">
                 <div id="forms-container" className="col-md-6 text-start order-2 order-md-1">
                     <OriginForm />
-                    <br />
+                    <ClassSpecificForm />
                 </div>
                 <br />
-                <div id="character-container" className="col-md-6 text-start order-1 order-md-2 pb-3" style={{background: `var(--${character.class.toLowerCase()}-grad)`}}>
+                <div id="character-container" className="col-md-6 text-start order-1 order-md-2 pb-3 mb-3" style={{background: `var(--${character.class.toLowerCase()}-grad)`}}>
                     <div className="row pt-4 pb-3">
                         <div className="col-4 text-center m-auto">
                             <img src={`./src/assets/ClassIcon-${character.class}.svg`} alt="Class Icon" width="50px" />
@@ -48,6 +49,9 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <li><strong>Background: </strong>{character.background || "None"}</li>
                             <li><strong>Traits: </strong>
                             <span>{character.traits.length > 0 ? character.traits.join(', ') : 'None'}</span>
+                            </li>
+                            <li><strong>Proficiencies: </strong>
+                            <span>{character.profs.length > 0 ? character.profs.join(', ') : 'None'}</span>
                             </li>
                             </ul>
                         </div>
