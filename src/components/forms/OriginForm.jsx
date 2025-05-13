@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 
 export default function OriginForm() {
-    const { setCharacter, speciesToSubspecies, speciesStats, backgroundStats } = useContext(CharacterContext);
+    const { character, setCharacter, speciesToSubspecies, speciesStats, backgroundStats } = useContext(CharacterContext);
 
     // State to track selected species and subspecies
     const [selectedSpecies, setSelectedSpecies] = useState('');

@@ -1,131 +1,215 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 
 export default function ClassSpecificForm() {
-  const { character } = useContext(CharacterContext);
+  const { character, classStats } = useContext(CharacterContext);
 
   switch (character.class) {
     case 'Barbarian':
-      return <BarbarianForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <BarbarianForm />
+        </div>
+      );
     case 'Bard':
-      return <BardForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <BardForm />
+        </div>
+      );
     case 'Cleric':
-      return <ClericForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <ClericForm />
+        </div>
+      );
     case 'Druid':
-      return <DruidForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <DruidForm />
+        </div>
+      );
     case 'Fighter':
-      return <FighterForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <FighterForm />
+        </div>
+      );
     case 'Monk':
-      return <MonkForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <MonkForm />
+        </div>
+      );
     case 'Paladin':
-      return <PaladinForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <PaladinForm />
+        </div>
+      );
     case 'Ranger':
-      return <RangerForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <RangerForm />
+        </div>
+      );
     case 'Rogue':
-      return <RogueForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <RogueForm />
+        </div>
+      );
     case 'Sorcerer':
-      return <SorcererForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <SorcererForm />
+        </div>
+      );
     case 'Warlock':
-      return <WarlockForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <WarlockForm />
+        </div>
+      );
     case 'Wizard':
-      return <WizardForm />;
+      return (
+        <div className="form-section p-2 pb-3">
+            <h2 className="text-center">{character.class} Class:</h2>
+            <p className="description text-center fst-italic">{classStats[character.class].description}</p>
+            <WizardForm />
+        </div>
+      );
     default:
-      return <div>Please select a class.</div>;
+      return (<div>Please go back to select a class.</div>);
   }
 }
 
 export function BarbarianForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Barbarian Class:</h2>
+        <div>
+
         </div>
     );
 }
 
 export function BardForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Bard Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function ClericForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Cleric Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function DruidForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Druid Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function FighterForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Fighter Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function MonkForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Monk Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function PaladinForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Paladin Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function RangerForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Ranger Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function RogueForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Rogue Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function SorcererForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Sorcerer Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function WarlockForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Warlock Class:</h2>
+        <div>
+            
         </div>
     );
 }
 
 export function WizardForm() {
+    const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
-        <div className="form-section p-2 pb-3">
-            <h2 className="text-center">Wizard Class:</h2>
+        <div>
+            
         </div>
     );
 }
