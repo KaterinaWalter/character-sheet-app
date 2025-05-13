@@ -110,7 +110,7 @@ export function BarbarianForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -119,7 +119,7 @@ export function BardForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -128,7 +128,7 @@ export function ClericForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -137,7 +137,7 @@ export function DruidForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -146,7 +146,7 @@ export function FighterForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -155,7 +155,7 @@ export function MonkForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -164,7 +164,7 @@ export function PaladinForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -173,7 +173,7 @@ export function RangerForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -182,7 +182,7 @@ export function RogueForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -191,7 +191,7 @@ export function SorcererForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -200,7 +200,7 @@ export function WarlockForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }
@@ -209,7 +209,7 @@ export function WizardForm() {
     const { character, setCharacter, classStats } = useContext(CharacterContext);
     return (
         <div>
-            
+            <p>TODO: Class-specific form</p>
         </div>
     );
 }

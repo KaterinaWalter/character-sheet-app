@@ -9,9 +9,11 @@ export default function CharacterDetails({ onNext, onBack }) {
     
     return (
         <div className="container-fluid text-center m-auto">
-            <div className="d-flex justify-content-between">
-                <button className="btn btn-primary" onClick={onBack}>← Class Selection</button>
-                <button className="btn btn-primary" onClick={onNext}>Print Sheet →</button>
+            <div className="container">
+                <div className="d-flex justify-content-between">
+                    <button className="btn btn-primary" onClick={onBack}>← Class Selection</button>
+                    <button className="btn btn-primary" onClick={onNext}>Print Sheet →</button>
+                </div>
             </div>
             <br></br>
             <div className="row">
@@ -19,9 +21,8 @@ export default function CharacterDetails({ onNext, onBack }) {
                     <OriginForm />
                     <ClassSpecificForm />
                 </div>
-                <br />
                 <div id="character-container" className="col-md-6 text-start order-1 order-md-2 pb-3 mb-3" style={{background: `var(--${character.class.toLowerCase()}-grad)`}}>
-                    <div className="row p-2 pt-4">
+                    <div className="row p-2 pt-4 pb-0">
                         <div className="col-10">
                             <h2 className="fw-bold" style={{ fontSize: "2.5rem" }}>
                                 <span>{character.species || ""}</span>
@@ -35,41 +36,54 @@ export default function CharacterDetails({ onNext, onBack }) {
                         </div>
                     </div>
                     <div className="row p-2 pb-0">
-                        <div className="col-7">
+                        <div className="col-6">
                             <ul className="list-unstyled">
+                            <li><strong>Name: </strong>{character.name || "None"}</li>
+                            <li><strong>Alignment: </strong>{character.alignment || "None"}</li>
                             <li><strong>Background: </strong>{character.background || "None"}</li>
+                            </ul>
+                        </div>
+                        <div className="col-6">
+                            <ul className="list-unstyled">
                             <li><strong>Species Traits: </strong>
                             <span>{character.traits.length > 0 ? character.traits.join(', ') : 'None'}</span>
                             </li>
+                            {character.darkvision > 0 && (
+                            <li><strong>Darkvision: </strong>{character.darkvision || 0} ft.</li>
+                            )}
                             <li><strong>Proficiencies: </strong>
                             <span>{character.profs.length > 0 ? character.profs.join(', ') : 'None'}</span>
                             </li>
                             </ul>
                         </div>
-                        <div className="col-5">
-                            <div className="row g-2 mb-2 text-center">
-                                <div className="col-6">
-                                    <div className="ability d-flex flex-column">
-                                        <div className="p-1"><img src="./src/assets/icons8-shield-96.png" width="32px"/></div>
-                                        <span className="ability-label">AC</span>
-                                        <span className="ability-score">{character.armorClass || 0}</span>
-                                    </div>
-                                </div>
-                                <div className="col-6">
-                                    <div className="ability d-flex flex-column">
-                                        <div className="p-1"><img src="./src/assets/icons8-health-64.png" width="32px"/></div>
-                                        <span className="ability-label">HP</span>
-                                        <span className="ability-score">{character.maxHP || 0}</span>
-                                    </div>
-                                </div>
+                    </div>
+                    <div className="row g-3 pb-2 text-center">
+                        <div className="col-3">
+                            <div className="ability d-flex flex-column">
+                                <div className="p-1"><img src="./src/assets/icons8-health-64.png" width="32px"/></div>
+                                <span className="ability-label">Hit Points</span>
+                                <span className="ability-score">__ / {character.maxHP || 0}</span>
                             </div>
-                            <div className="row g-2 text-center">
-                                <ul className="list-unstyled text-center ">
-                                <li><strong>Speed: </strong>{character.speed || 0} ft.</li>
-                                {character.darkvision > 0 && (
-                                <li><strong>Darkvision: </strong>{character.darkvision || 0} ft.</li>
-                                )}
-                                </ul>
+                        </div>
+                        <div className="col-3">
+                            <div className="ability d-flex flex-column">
+                                <div className="p-1"><img src="./src/assets/icons8-shield-96.png" width="32px"/></div>
+                                <span className="ability-label">Armor Class</span>
+                                <span className="ability-score">{character.armorClass || 0}</span>
+                            </div>
+                        </div>
+                        <div className="col-3">
+                            <div className="ability d-flex flex-column">
+                                <div className="p-1"><img src="./src/assets/icons8-wing-64.png" width="32px"/></div>
+                                <span className="ability-label">Speed</span>
+                                <span className="ability-score">{character.speed || 0} ft.</span>
+                            </div>
+                        </div>
+                        <div className="col-3">
+                            <div className="ability d-flex flex-column">
+                                <div className="p-1"><img src="./src/assets/icons8-critical.png" width="32px"/></div>
+                                <span className="ability-label">Initiative</span>
+                                <span className="ability-score">{character.initiative || 0}</span>
                             </div>
                         </div>
                     </div>
@@ -116,46 +130,6 @@ export default function CharacterDetails({ onNext, onBack }) {
                                 <span className="ability-label">CHA</span>
                                 <span className="ability-score">{character.abilityScores['CHA'] || 0}</span>
                                 <span className="ability-mod">{character.abilityMods['CHA'] >= 0 ? "+" : ""}{character.abilityMods['CHA'] || 0}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <h3 className="fs-5 fw-bold text-center">Saving Throws:</h3>
-                    <div className="row g-2">
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">STR</span>
-                                <span className="ability-mod">{character.savingThrows['STR'] >= 0 ? "+" : ""}{character.savingThrows['STR'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">DEX</span>
-                                <span className="ability-mod">{character.savingThrows['DEX'] >= 0 ? "+" : ""}{character.savingThrows['DEX'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">CON</span>
-                                <span className="ability-mod">{character.savingThrows['CON'] >= 0 ? "+" : ""}{character.savingThrows['CON'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">INT</span>
-                                <span className="ability-mod">{character.savingThrows['INT'] >= 0 ? "+" : ""}{character.savingThrows['INT'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">WIS</span>
-                                <span className="ability-mod">{character.savingThrows['WIS'] >= 0 ? "+" : ""}{character.savingThrows['WIS'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">CHA</span>
-                                <span className="ability-mod">{character.savingThrows['CHA'] >= 0 ? "+" : ""}{character.savingThrows['CHA'] || 0}</span>
                             </div>
                         </div>
                     </div>

@@ -78,6 +78,29 @@ export default function OriginForm() {
             <h2 className="text-center">Character Origin:</h2>
             <div className="row">
                 <div className="col-6">
+                    <label htmlFor="name">Name</label>
+                    <input id="name" type="text" className="form-control" value={character.name} onChange={(e) => setCharacter({ ...character, name: e.target.value })} />
+                </div>
+                <div className="col-6">
+                    <label htmlFor="alignment">Alignment</label>
+                    <select id="alignment" className="form-select" value={character.alignment} onChange={(e) => setCharacter({ ...character, alignment: e.target.value })}>
+                        <option value="">Select an alignment</option>
+                        <option value="Lawful Good">Lawful Good</option>
+                        <option value="Neutral Good">Neutral Good</option>
+                        <option value="Chaotic Good">Chaotic Good</option>
+                        <option value="Lawful Neutral">Lawful Neutral</option>
+                        <option value="True Neutral">True Neutral</option>
+                        <option value="Chaotic Neutral">Chaotic Neutral</option>
+                        <option value="Lawful Evil">Lawful Evil</option>
+                        <option value="Neutral Evil">Neutral Evil</option>
+                        <option value="Chaotic Evil">Chaotic Evil</option>
+                        <option value="Unaligned">Unaligned</option>
+                    </select>
+                </div>
+            </div>
+            <hr/>
+            <div className="row">
+                <div className="col-6">
                     <label htmlFor="species">Species</label>
                     <select id="species" className="form-select" onChange={handleSpeciesChange}>
                         <option value="">Select a species</option>
