@@ -40,13 +40,12 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <ul className="list-unstyled">
                             <li><strong>Name: </strong>{character.name || "None"}</li>
                             <li><strong>Alignment: </strong>{character.alignment || "None"}</li>
-                            <li><strong>Background: </strong>{character.background || "None"}</li>
-                            {character.originFeat && (
-                            <li><strong>Origin Feat: </strong>{character.originFeat}</li>
-                            )}
-                            {character.toolProf && (
-                            <li><strong>Tool Proficiency: </strong>{character.toolProf}</li>
-                            )}
+                            <li><strong>Armor Training: </strong>
+                            <span>{character.armorProfs.length > 0 ? character.armorProfs.join(', ') : 'None'}</span>
+                            </li>
+                            <li><strong>Weapon Proficiencies: </strong>
+                            <span>{character.weaponProfs.length > 0 ? character.weaponProfs.join(', ') : 'None'}</span>
+                            </li>
                             </ul>
                         </div>
                         <div className="col-6">
@@ -57,12 +56,13 @@ export default function CharacterDetails({ onNext, onBack }) {
                             {character.darkvision > 0 && (
                             <li><strong>Darkvision: </strong>{character.darkvision} ft.</li>
                             )}
-                            <li><strong>Armor Training: </strong>
-                            <span>{character.armorProfs.length > 0 ? character.armorProfs.join(', ') : 'None'}</span>
-                            </li>
-                            <li><strong>Weapon Proficiencies: </strong>
-                            <span>{character.weaponProfs.length > 0 ? character.weaponProfs.join(', ') : 'None'}</span>
-                            </li>
+                            <li><strong>Background: </strong>{character.background || "None"}</li>
+                            {character.originFeat && (
+                            <li><strong>Origin Feat: </strong>{character.originFeat}</li>
+                            )}
+                            {character.toolProf && (
+                            <li><strong>Tool Proficiency: </strong>{character.toolProf}</li>
+                            )}
                             </ul>
                         </div>
                     </div>
