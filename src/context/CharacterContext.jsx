@@ -141,18 +141,18 @@ const backgroundStats = {
 // Class-specific stats (hitDie, weapon/armor proficiencies, saving throw proficiencies)
 // Skill proficiencies in ClassSpecificForm.jsx
 const classStats = {
-  Barbarian: { hitDie: 12, profs: ['Light Armor', 'Medium Armor', 'Shields', 'Simple Weapons', 'Martial Weapons'], savingThrows: ['STR', 'CON'], description: "A Fierce Warrior of Primal Rage" },
-  Bard: { hitDie: 8, profs: ['Light Armor', 'Simple Weapons'], savingThrows: ['DEX', 'CHA'], description: "An Inspiring Performer of Music, Dance, and Magic" },
-  Cleric: { hitDie: 8, profs: ['Light Armor', 'Medium Armor', 'Shields', 'Simple Weapons'], savingThrows: ['WIS', 'CHA'], description: "A Miraculous Priest of Divine Power" },
-  Druid: { hitDie: 8, profs: ['Light Armor', 'Shields', 'Simple Weapons'], savingThrows: ['INT', 'WIS'], description: "A Nature Priest of Primal Power" },
-  Fighter: { hitDie: 10, profs: ['Light Armor', 'Medium Armor', 'Heavy Armor', 'Shields', 'Simple Weapons', 'Martial Weapons'], savingThrows: ['STR', 'CON'], description: "A Master of All Arms and Armor" },
-  Monk: { hitDie: 8, profs: ['Simple Weapons', 'Martial Weapons (Light only)'], savingThrows: ['STR', 'DEX'], description: "A Martial Artist of Supernatural Focus" },
-  Paladin: { hitDie: 10, profs: ['Light Armor', 'Medium Armor', 'Heavy Armor', 'Shields', 'Simple Weapons', 'Martial Weapons'], savingThrows: ['WIS', 'CHA'], description: "A Devout Warrior of Sacred Oaths" },
-  Ranger: { hitDie: 10, profs: ['Light Armor', 'Medium Armor', 'Shields', 'Simple Weapons', 'Martial Weapons'], savingThrows: ['STR', 'DEX'], description: "A Wandering Warrior Imbued with Primal Magic" },
-  Rogue: { hitDie: 8, profs: ['Light Armor', 'Simple Weapons', 'Martial Weapons (Finesse or Light only)'], savingThrows: ['DEX', 'INT'], description: "A Dexterous Expert in Stealth and Subterfuge" },
-  Sorcerer: { hitDie: 6, profs: ['Simple Weapons'], savingThrows: ['CON', 'CHA'], description: "A Dazzling Mage Filled with Innate Magic"} ,
-  Warlock: { hitDie: 8, profs: ['Light Armor', 'Simple Weapons'], savingThrows: ['WIS', 'CHA'], description: "An Occultist Empowered by Otherworldly Pacts" },
-  Wizard: { hitDie: 6, profs: ['Simple Weapons'], savingThrows: ['INT', 'WIS'], description: "A Scholarly Magic-User of Arcane Power" },
+  Barbarian: { hitDie: 12, weaponProfs: ['Simple Weapons', 'Martial Weapons'], armorProfs: ['Shields', 'Light Armor', 'Medium Armor'], savingThrows: ['STR', 'CON'], description: "A Fierce Warrior of Primal Rage" },
+  Bard: { hitDie: 8, weaponProfs: ['Simple Weapons'], armorProfs: ['Light Armor'], savingThrows: ['DEX', 'CHA'], description: "An Inspiring Performer of Music, Dance, and Magic" },
+  Cleric: { hitDie: 8, weaponProfs: ['Simple Weapons'], armorProfs: ['Shields', 'Light Armor', 'Medium Armor'], savingThrows: ['WIS', 'CHA'], description: "A Miraculous Priest of Divine Power" },
+  Druid: { hitDie: 8, weaponProfs: ['Simple Weapons'], armorProfs: ['Shields', 'Light Armor'], savingThrows: ['INT', 'WIS'], description: "A Nature Priest of Primal Power" },
+  Fighter: { hitDie: 10, weaponProfs: ['Simple Weapons', 'Martial Weapons'], armorProfs: ['Shields', 'Light Armor', 'Medium Armor', 'Heavy Armor'], savingThrows: ['STR', 'CON'], description: "A Master of All Arms and Armor" },
+  Monk: { hitDie: 8, weaponProfs: ['Simple Weapons', 'Martial Weapons (Light only)'], armorProfs: [], savingThrows: ['STR', 'DEX'], description: "A Martial Artist of Supernatural Focus" },
+  Paladin: { hitDie: 10, weaponProfs: ['Simple Weapons', 'Martial Weapons'], armorProfs: ['Shields', 'Light Armor', 'Medium Armor', 'Heavy Armor'], savingThrows: ['WIS', 'CHA'], description: "A Devout Warrior of Sacred Oaths" },
+  Ranger: { hitDie: 10, weaponProfs: ['Simple Weapons', 'Martial Weapons'], armorProfs: ['Shields', 'Light Armor', 'Medium Armor'], savingThrows: ['STR', 'DEX'], description: "A Wandering Warrior Imbued with Primal Magic" },
+  Rogue: { hitDie: 8, weaponProfs: ['Simple Weapons', 'Martial Weapons (Finesse or Light only)'], armorProfs: ['Light Armor'], savingThrows: ['DEX', 'INT'], description: "A Dexterous Expert in Stealth and Subterfuge" },
+  Sorcerer: { hitDie: 6, weaponProfs: ['Simple Weapons'], armorProfs: [], savingThrows: ['CON', 'CHA'], description: "A Dazzling Mage Filled with Innate Magic"} ,
+  Warlock: { hitDie: 8, weaponProfs: ['Simple Weapons'], armorProfs: ['Light Armor'], savingThrows: ['WIS', 'CHA'], description: "An Occultist Empowered by Otherworldly Pacts" },
+  Wizard: { hitDie: 6, weaponProfs: ['Simple Weapons'], armorProfs: [], savingThrows: ['INT', 'WIS'], description: "A Scholarly Magic-User of Arcane Power" },
 }
 
 // Recommended ability scores for each class
@@ -179,10 +179,13 @@ export const CharacterProvider = ({ children }) => {
     class: '',
     species: '',
     background: '',
+    originFeat: '', // from background
+    toolProf: '', // from background
     size: '',
     name: '',
     alignment: '',
     level: 1,
+    proficiencyBonus: 2, // for level 1
     experience: 0,
     armorClass: 0,
     maxHP: 0,
@@ -190,9 +193,10 @@ export const CharacterProvider = ({ children }) => {
     darkvision: 0,
     initiative: 0,
     passivePerception: 0,
-    proficiencyBonus: 0,
-    traits: [],
-    profs: [],
+    traits: [], // from species
+    weaponProfs: [], // from class
+    armorProfs: [], //from class
+    languages: [],
     abilityScores: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
     abilityMods: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
     savingThrows: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
@@ -231,8 +235,19 @@ export const CharacterProvider = ({ children }) => {
       abilityScores: updatedAbilityScores,
       abilityMods: calculateAbilityMods(updatedAbilityScores),
       maxHP: calculateMaxHP(characterClass, calculateAbilityMods(updatedAbilityScores).CON),
+      initiative: calculateAbilityMods(updatedAbilityScores).DEX,
       armorClass: 10 + calculateAbilityMods(updatedAbilityScores).DEX, // TODO: update based on armor
-      profs: classStats[characterClass].profs,
+      passivePerception: 10 + calculateAbilityMods(updatedAbilityScores).WIS,
+      weaponProfs: classStats[characterClass].weaponProfs,
+      armorProfs: classStats[characterClass].armorProfs,
+      savingThrows: {
+        STR: classStats[characterClass].savingThrows.includes('STR') ? 2 : 0,
+        DEX: classStats[characterClass].savingThrows.includes('DEX') ? 2 : 0,
+        CON: classStats[characterClass].savingThrows.includes('CON') ? 2 : 0,
+        INT: classStats[characterClass].savingThrows.includes('INT') ? 2 : 0,
+        WIS: classStats[characterClass].savingThrows.includes('WIS') ? 2 : 0,
+        CHA: classStats[characterClass].savingThrows.includes('CHA') ? 2 : 0,
+      },
     }));
   };
   return (

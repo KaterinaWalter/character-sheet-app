@@ -49,6 +49,8 @@ export default function OriginForm() {
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
             background,
+            originFeat: backgroundStats[background]?.feat || 'None',
+            toolProf: backgroundStats[background]?.toolProf || 'None',
         }));
     };
 
