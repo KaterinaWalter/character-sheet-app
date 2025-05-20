@@ -171,6 +171,16 @@ const recAbilityScores = {
   Wizard: { STR: 8, DEX: 12, CON: 13, INT: 15, WIS: 14, CHA: 10 },
 };
 
+// Mapping of abilities to associated skills
+const abilityToSkills = {
+  STR: ['Athletics', 'Intimidation'],
+  DEX: ['Acrobatics', 'Sleight of Hand', 'Stealth'],
+  CON: [],
+  INT: ['Arcana', 'History', 'Investigation', 'Nature', 'Religion'],
+  WIS: ['Animal Handling', 'Insight', 'Medicine', 'Perception', 'Survival'],
+  CHA: ['Deception', 'Intimidation', 'Performance', 'Persuasion'],
+};
+
 // Create the provider component to wrap the app
 export const CharacterProvider = ({ children }) => {
 
@@ -185,22 +195,22 @@ export const CharacterProvider = ({ children }) => {
     name: '',
     alignment: '',
     level: 1,
-    proficiencyBonus: 2, // for level 1
+    proficiencyBonus: 2, // for lvl 1
     experience: 0,
-    armorClass: 0,
-    maxHP: 0,
-    speed: 0,
-    darkvision: 0,
-    initiative: 0,
-    passivePerception: 0,
+    armorClass: 0, // 10 + DEX mod + armor (TODO: update based on armor)
+    maxHP: 0, // class hit die + CON mod
+    speed: 0, // from species
+    darkvision: 0, // from species
+    initiative: 0, // DEX mod
+    passivePerception: 0, // 10 + WIS mod
     traits: [], // from species
     weaponProfs: [], // from class
-    armorProfs: [], //from class
-    languages: [],
+    armorProfs: [], // from class
+    skillProfs: [], // TODO: choose on class-specific form
     abilityScores: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
     abilityMods: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
     savingThrows: {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0 },
-    skillProfs: {'Acrobatics': 0, 'Animal Handling': 0, 'Arcana': 0, 'Athletics': 0, 'Deception': 0, 'History': 0, 'Insight': 0, 'Intimidation': 0, 'Investigation': 0, 'Medicine': 0, 'Nature': 0, 'Perception': 0, 'Performance': 0, 'Persuasion': 0, 'Religion': 0, 'Sleight of Hand': 0, 'Stealth': 0, 'Survival': 0 },
+    skillMods: {'Acrobatics': 0, 'Animal Handling': 0, 'Arcana': 0, 'Athletics': 0, 'Deception': 0, 'History': 0, 'Insight': 0, 'Intimidation': 0, 'Investigation': 0, 'Medicine': 0, 'Nature': 0, 'Perception': 0, 'Performance': 0, 'Persuasion': 0, 'Religion': 0, 'Sleight of Hand': 0, 'Stealth': 0, 'Survival': 0 },
   });
 
   // Helper function to calculate ability modifiers
@@ -225,6 +235,30 @@ export const CharacterProvider = ({ children }) => {
     return level1HP;
   };
 
+  /* CALCULATE SAVING THROWS: For saving throws you have proficiency in, ADD your 
+   * Proficiency Bonus (2 for lvl 1) to the appropriate ability modifier.
+   * Saving throws NOT proficient in - just the relevant ability modifier.
+  */
+ const calculateSavingThrows = (abilityMods, savingThrowProficiencies) => {
+    const savingThrows = {};
+    for (const [key, mod] of Object.entries(abilityMods)) {
+      if (savingThrowProficiencies.includes(key)) {
+        savingThrows[key] = mod + character.proficiencyBonus;
+      } else {
+        savingThrows[key] = mod;
+      }
+    }
+    return savingThrows;
+  }
+
+  /* CALCULATE SKILLS: For skills you have proficiency in, ADD your 
+   * Proficiency Bonus (2 for lvl 1) to the ability modifier associated with that skill.
+   * Skills NOT proficient in - just the relevant ability modifier.
+  */
+  const calculateSkills = (abilityMods) => {
+    return {};
+  }
+
   // Function to update the character class
   const setCharacterClass = (characterClass) => {
     console.log('SETTING CHARACTER CLASS:', characterClass);
@@ -240,14 +274,8 @@ export const CharacterProvider = ({ children }) => {
       passivePerception: 10 + calculateAbilityMods(updatedAbilityScores).WIS,
       weaponProfs: classStats[characterClass].weaponProfs,
       armorProfs: classStats[characterClass].armorProfs,
-      savingThrows: {
-        STR: classStats[characterClass].savingThrows.includes('STR') ? 2 : 0,
-        DEX: classStats[characterClass].savingThrows.includes('DEX') ? 2 : 0,
-        CON: classStats[characterClass].savingThrows.includes('CON') ? 2 : 0,
-        INT: classStats[characterClass].savingThrows.includes('INT') ? 2 : 0,
-        WIS: classStats[characterClass].savingThrows.includes('WIS') ? 2 : 0,
-        CHA: classStats[characterClass].savingThrows.includes('CHA') ? 2 : 0,
-      },
+      savingThrows: calculateSavingThrows(calculateAbilityMods(updatedAbilityScores), classStats[characterClass].savingThrows),
+      skillMods: calculateSkills(calculateAbilityMods(updatedAbilityScores)),
     }));
   };
   return (

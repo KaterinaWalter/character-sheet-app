@@ -165,21 +165,21 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">DEX</span>
                                 <span className="ability-label">Acrobatics</span>
-                                <span className="ability-mod">{character.skillProfs['Acrobatics'] >= 0 ? "+" : ""}{character.skillProfs['Acrobatics'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Acrobatics'] >= 0 ? "+" : ""}{character.skillProfs['Acrobatics'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">WIS</span>
                                 <span className="ability-label">Animal Handling</span>
-                                <span className="ability-mod">{character.skillProfs['Animal Handling'] >= 0 ? "+" : ""}{character.skillProfs['Animal Handling'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Animal Handling'] >= 0 ? "+" : ""}{character.skillProfs['Animal Handling'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">INT</span>
                                 <span className="ability-label">Arcana</span>
-                                <span className="ability-mod">{character.skillProfs['Arcana'] >= 0 ? "+" : ""}{character.skillProfs['Arcana'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Arcana'] >= 0 ? "+" : ""}{character.skillProfs['Arcana'] || 0}</span>
                             </div>
                         </div>
                     </div>
@@ -188,21 +188,21 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">STR</span>
                                 <span className="ability-label">Athletics</span>
-                                <span className="ability-mod">{character.skillProfs['Athletics'] >= 0 ? "+" : ""}{character.skillProfs['Athletics'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Athletics'] >= 0 ? "+" : ""}{character.skillProfs['Athletics'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">CHA</span>
                                 <span className="ability-label">Deception</span>
-                                <span className="ability-mod">{character.skillProfs['Deception'] >= 0 ? "+" : ""}{character.skillProfs['Deception'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Deception'] >= 0 ? "+" : ""}{character.skillProfs['Deception'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">INT</span>
                                 <span className="ability-label">History</span>
-                                <span className="ability-mod">{character.skillProfs['History'] >= 0 ? "+" : ""}{character.skillProfs['History'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['History'] >= 0 ? "+" : ""}{character.skillProfs['History'] || 0}</span>
                             </div>
                         </div>
                     </div>
@@ -211,21 +211,21 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">WIS</span>
                                 <span className="ability-label">Insight</span>
-                                <span className="ability-mod">{character.skillProfs['Insight'] >= 0 ? "+" : ""}{character.skillProfs['Insight'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Insight'] >= 0 ? "+" : ""}{character.skillProfs['Insight'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">CHA</span>
                                 <span className="ability-label">Intimidation</span>
-                                <span className="ability-mod">{character.skillProfs['Intimidation'] >= 0 ? "+" : ""}{character.skillProfs['Intimidation'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Intimidation'] >= 0 ? "+" : ""}{character.skillProfs['Intimidation'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">INT</span>
                                 <span className="ability-label">Investigation</span>
-                                <span className="ability-mod">{character.skillProfs['Investigation'] >= 0 ? "+" : ""}{character.skillProfs['Investigation'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Investigation'] >= 0 ? "+" : ""}{character.skillProfs['Investigation'] || 0}</span>
                             </div>
                         </div>
                     </div>
@@ -234,21 +234,21 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">WIS</span>
                                 <span className="ability-label">Medicine</span>
-                                <span className="ability-mod">{character.skillProfs['Medicine'] >= 0 ? "+" : ""}{character.skillProfs['Medicine'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Medicine'] >= 0 ? "+" : ""}{character.skillProfs['Medicine'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">INT</span>
                                 <span className="ability-label">Nature</span>
-                                <span className="ability-mod">{character.skillProfs['Nature'] >= 0 ? "+" : ""}{character.skillProfs['Nature'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Nature'] >= 0 ? "+" : ""}{character.skillProfs['Nature'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">WIS</span>
                                 <span className="ability-label">Perception</span>
-                                <span className="ability-mod">{character.skillProfs['Perception'] >= 0 ? "+" : ""}{character.skillProfs['Perception'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Perception'] >= 0 ? "+" : ""}{character.skillProfs['Perception'] || 0}</span>
                             </div>
                         </div>
                     </div>
@@ -257,21 +257,21 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">CHA</span>
                                 <span className="ability-label">Performance</span>
-                                <span className="ability-mod">{character.skillProfs['Performance'] >= 0 ? "+" : ""}{character.skillProfs['Performance'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Performance'] >= 0 ? "+" : ""}{character.skillProfs['Performance'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">CHA</span>
                                 <span className="ability-label">Persuasion</span>
-                                <span className="ability-mod">{character.skillProfs['Persuasion'] >= 0 ? "+" : ""}{character.skillProfs['Persuasion'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Persuasion'] >= 0 ? "+" : ""}{character.skillProfs['Persuasion'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">INT</span>
                                 <span className="ability-label">Religion</span>
-                                <span className="ability-mod">{character.skillProfs['Religion'] >= 0 ? "+" : ""}{character.skillProfs['Religion'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Religion'] >= 0 ? "+" : ""}{character.skillProfs['Religion'] || 0}</span>
                             </div>
                         </div>
                     </div>
@@ -280,21 +280,21 @@ export default function CharacterDetails({ onNext, onBack }) {
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">DEX</span>
                                 <span className="ability-label">Sleight of Hand</span>
-                                <span className="ability-mod">{character.skillProfs['Sleight of Hand'] >= 0 ? "+" : ""}{character.skillProfs['Sleight of Hand'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Sleight of Hand'] >= 0 ? "+" : ""}{character.skillProfs['Sleight of Hand'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">DEX</span>
                                 <span className="ability-label">Stealth</span>
-                                <span className="ability-mod">{character.skillProfs['Stealth'] >= 0 ? "+" : ""}{character.skillProfs['Stealth'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Stealth'] >= 0 ? "+" : ""}{character.skillProfs['Stealth'] || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
                             <div className="ability d-flex flex-column">
                                 <span className="ability-label">WIS</span>
                                 <span className="ability-label">Survival</span>
-                                <span className="ability-mod">{character.skillProfs['Survival'] >= 0 ? "+" : ""}{character.skillProfs['Survival'] || 0}</span>
+                                <span className="ability-mod">{character.skillMods['Survival'] >= 0 ? "+" : ""}{character.skillProfs['Survival'] || 0}</span>
                             </div>
                         </div>
                     </div>

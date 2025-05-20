@@ -57,14 +57,14 @@ export default function OriginForm() {
         }));
     };
 
-    const handleAbilityAllocationChange = (ability, value) => {
+    const handleAbilityBonusChange = (ability, value) => {
         setAbilityAllocation((prev) => ({
             ...prev,
             [ability]: value,
         }));
     };
 
-    const handleAbilityAllocationSubmit = () => {
+    const handleAbilityBonusSubmit = () => {
         setCharacter((prevCharacter) => {
             const updatedScores = { ...prevCharacter.abilityScores };
 
@@ -197,14 +197,14 @@ export default function OriginForm() {
                                         min="0"
                                         max={max}
                                         value={currentValue}
-                                        onChange={(e) => handleAbilityAllocationChange(ability, parseInt(e.target.value) || 0)}
+                                        onChange={(e) => handleAbilityBonusChange(ability, parseInt(e.target.value) || 0)}
                                     />
                                 </div>
                             );
                         })}
                         </div>
                         <div className="row m-auto">
-                            <button className="btn btn-primary mt-2" onClick={handleAbilityAllocationSubmit}>Apply Points</button>
+                            <button className="btn btn-primary mt-2" onClick={handleAbilityBonusSubmit}>Apply Points</button>
                         </div>
                     </div>
                 )}
