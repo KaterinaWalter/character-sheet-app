@@ -181,6 +181,34 @@ const abilityToSkills = {
   CHA: ['Deception', 'Intimidation', 'Performance', 'Persuasion'],
 };
 
+// Skill proficiencies for each class
+const classSkillOptions = {
+  Barbarian: { numChoices: 2, 
+    skillOptions: ['Animal Handling', 'Athletics', 'Intimidation', 'Nature', 'Perception', 'Survival'] },
+  Bard: { numChoices: 3, 
+    skillOptions: ['Acrobatics', 'Animal Handling', 'Arcana', 'Athletics', 'Deception', 'History', 'Insight', 'Intimidation', 'Investigation', 'Medicine', 'Nature', 'Perception', 'Performance', 'Persuasion', 'Religion', 'Sleight of Hand', 'Stealth', 'Survival'] },
+  Cleric: { numChoices: 2, 
+    skillOptions: ['History', 'Insight', 'Medicine', 'Persuasion', 'Religion'] },
+  Druid: { numChoices: 2, 
+    skillOptions: ['Animal Handling', 'Arcana', 'Insight', 'Medicine', 'Nature', 'Perception', 'Religion', 'Survival'] },
+  Fighter: { numChoices: 2, 
+    skillOptions: ['Acrobatics', 'Animal Handling', 'Athletics', 'History', 'Insight', 'Intimidation', 'Perception', 'Persuasion', 'Survival'] },
+  Monk: { numChoices: 2, 
+    skillOptions: ['Acrobatics', 'Athletics', 'History', 'Insight', 'Religion', 'Stealth'] },
+  Paladin: { numChoices: 2, 
+    skillOptions: ['Athletics', 'Insight', 'Intimidation', 'Medicine', 'Persuasion', 'Religion'] },
+  Ranger: { numChoices: 3, 
+    skillOptions: ['Animal Handling', 'Athletics', 'Insight', 'Investigation', 'Nature', 'Perception', 'Stealth', 'Survival'] },
+  Rogue: { numChoices: 4, 
+    skillOptions: ['Acrobatics', 'Athletics', 'Deception', 'Insight', 'Intimidation', 'Investigation', 'Perception', 'Persuasion', 'Sleight of Hand', 'Stealth'] },
+  Sorcerer: { numChoices: 2, 
+    skillOptions: ['Arcana', 'Deception', 'Insight', 'Intimidation', 'Persuasion', 'Religion'] },
+  Warlock: { numChoices: 2, 
+    skillOptions: ['Arcana', 'Deception', 'History', 'Intimidation', 'Investigation', 'Nature', 'Religion'] },
+  Wizard: { numChoices: 2, 
+    skillOptions: ['Arcana', 'History', 'Insight', 'Investigation', 'Medicine', 'Nature', 'Religion'] },
+}
+
 // Create the provider component to wrap the app
 export const CharacterProvider = ({ children }) => {
 

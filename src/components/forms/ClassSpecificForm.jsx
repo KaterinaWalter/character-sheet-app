@@ -4,6 +4,8 @@ import { CharacterContext } from '../../context/CharacterContext';
 export default function ClassSpecificForm() {
   const { character, classStats } = useContext(CharacterContext);
 
+  
+
   switch (character.class) {
     case 'Barbarian':
       return (
