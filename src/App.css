@@ -121,7 +121,42 @@ footer a {
 .ability-mod {
   color: var(--grey-lt) !important;
 }
-
+.skill-label {
+  font-family: "Bellefair" !important;
+}
+.skill-mod {
+  color: var(--grey-lt) !important;
+  border-bottom: 2px solid var(--grey-lt);
+  padding: 0px 10px;
+}
+.big-number {
+  font-weight: bold;
+  border: 1px solid var(--grey-md);
+  border-radius: 50%;
+  height: 10px;
+  padding: 5px 10px;
+}
+.check-input {
+  accent-color: var(--grey-md) !important;
+}
+.stat {
+  background: white;
+  border: 2px solid var(--grey-md);
+  border-radius: .375rem;
+  padding-top: 30px;
+}
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  text-align: center;
+  padding-top: 7px;
+  border: 2px solid var(--grey-md);
+  border-radius: 50%;
+  background: white;
+  position: relative;
+  top: 25px;
+}
 
 /*
 #class-overview-container {

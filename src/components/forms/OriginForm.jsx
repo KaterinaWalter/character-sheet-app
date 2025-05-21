@@ -172,7 +172,7 @@ export default function OriginForm() {
                 {selectedBackground && (
                     <div className="col-6">
                         <label>Ability Score Bonuses</label>
-                        <p><em>Your background grants 3 bonus points to distribute among the following abilities:</em></p>
+                        <p>The <strong>{selectedBackground}</strong> background grants 3 bonus points to distribute among the following abilities:</p>
                         <div className="row text-center m-auto">
                         {backgroundStats[selectedBackground].abilityBonuses.map((ability) => {
                             const currentValue = abilityAllocation[ability] || 0;

@@ -68,233 +68,134 @@ export default function CharacterDetails({ onNext, onBack }) {
                     </div>
                     <div className="row g-3 pb-2 text-center">
                         <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <div className="p-1"><img src="./src/assets/icons8-health-64.png" width="32px"/></div>
+                            <div className="stat-icon"><img src="./src/assets/icons8-health-64.png" width="32px"/></div>
+                            <div className="stat d-flex flex-column">
                                 <span className="ability-label">Hit Points</span>
-                                <span className="ability-score">__ / {character.maxHP || 0}</span>
+                                <span className="ability-score fw-bold">__ / {character.maxHP || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <div className="p-1"><img src="./src/assets/icons8-shield-96.png" width="32px"/></div>
+                            <div className="stat-icon"><img src="./src/assets/icons8-shield-96.png" width="32px"/></div>
+                            <div className="stat d-flex flex-column">
                                 <span className="ability-label">Armor Class</span>
-                                <span className="ability-score">{character.armorClass || 0}</span>
+                                <span className="ability-score fw-bold">{character.armorClass || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <div className="p-1"><img src="./src/assets/icons8-damage-up.png" width="32px"/></div>
+                            <div className="stat-icon"><img src="./src/assets/icons8-damage-up.png" width="32px"/></div>
+                            <div className="stat d-flex flex-column">
                                 <span className="ability-label">Proficiency Bonus</span>
-                                <span className="ability-score">{character.proficiencyBonus >= 0 ? "+" : ""}{character.proficiencyBonus || 0}</span>
+                                <span className="ability-score fw-bold">{character.proficiencyBonus >= 0 ? "+" : ""}{character.proficiencyBonus || 0}</span>
                             </div>
                         </div>
                     </div>
                     <div className="row g-3 pb-2 text-center">
                         <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <div className="p-1"><img src="./src/assets/icons8-wing-100.png" width="32px"/></div>
+                            <div className="stat-icon"><img src="./src/assets/icons8-wing-100.png" width="32px"/></div>
+                            <div className="stat d-flex flex-column">
                                 <span className="ability-label">Speed</span>
-                                <span className="ability-score">{character.speed || 0} ft.</span>
+                                <span className="ability-score"><span className="fw-bold">{character.speed || 30}</span> ft.</span>
                             </div>
                         </div>
                         <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <div className="p-1"><img src="./src/assets/icons8-eye-96.png" width="32px"/></div>
+                            <div className="stat-icon"><img src="./src/assets/icons8-eye-96.png" width="32px"/></div>
+                            <div className="stat d-flex flex-column">
                                 <span className="ability-label">Passive Perception</span>
-                                <span className="ability-score">{character.passivePerception || 0}</span>
+                                <span className="ability-score fw-bold">{character.passivePerception || 0}</span>
                             </div>
                         </div>
                         <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <div className="p-1"><img src="./src/assets/icons8-critical.png" width="32px"/></div>
+                            <div className="stat-icon"><img src="./src/assets/icons8-critical.png" width="32px"/></div>
+                            <div className="stat d-flex flex-column">
                                 <span className="ability-label">Initiative</span>
-                                <span className="ability-score">{character.initiative >= 0 ? "+" : ""}{character.initiative || 0}</span>
+                                <span className="ability-score fw-bold">{character.initiative >= 0 ? "+" : ""}{character.initiative || 0}</span>
                             </div>
                         </div>
                     </div>
                     <hr/>
                     <h3 className="fs-5 fw-bold text-center pt-1">Abilities & Skills:</h3>
-                    <div className="row g-2">
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">STR</span>
+                    <div className="container p-0">
+                        <div className="row g-2">
+                            <div id="STR" className="col-4 text-center d-flex flex-column ability">
+                                <span className="ability-label">Strength</span>
                                 <span className="ability-score">{character.abilityScores['STR'] || 0}</span>
                                 <span className="ability-mod">MOD: {character.abilityMods['STR'] >= 0 ? "+" : ""}{character.abilityMods['STR'] || 0}</span>
-                                <span className="ability-mod">ST: {character.savingThrows['STR'] >= 0 ? "+" : ""}{character.savingThrows['STR'] || 0}</span>
+                            </div>
+                            <div className="col-8 text-start ability">
+                                <div className="skill-label pt-1"><span className="skill-mod">{character.savingThrows['STR'] >= 0 ? "+" : ""}{character.savingThrows['STR'] || 0}</span> <strong>Saving Throw</strong></div>
+                                <hr className="my-2 mx-0"/>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Athletics'] >= 0 ? "+" : ""}{character.skillMods['Athletics'] || 0}</span> Athletics</div>
                             </div>
                         </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">DEX</span>
+                        <div className="row g-2">
+                            <div id="DEX" className="col-4 text-center d-flex flex-column ability">
+                                <span className="ability-label">Dexterity</span>
                                 <span className="ability-score">{character.abilityScores['DEX'] || 0}</span>
                                 <span className="ability-mod">MOD: {character.abilityMods['DEX'] >= 0 ? "+" : ""}{character.abilityMods['DEX'] || 0}</span>
-                                <span className="ability-mod">ST: {character.savingThrows['DEX'] >= 0 ? "+" : ""}{character.savingThrows['DEX'] || 0}</span>                            </div>
+                            </div>
+                            <div className="col-8 text-start ability">
+                                <div className="skill-label pt-1"><span className="skill-mod">{character.savingThrows['DEX'] >= 0 ? "+" : ""}{character.savingThrows['DEX'] || 0}</span> <strong>Saving Throw</strong></div>
+                                <hr className="my-2 mx-0"/>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Acrobatics'] >= 0 ? "+" : ""}{character.skillMods['Acrobatics'] || 0}</span> Acrobatics</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Sleight of Hand'] >= 0 ? "+" : ""}{character.skillMods['Sleight of Hand'] || 0}</span> Sleight of Hand</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Stealth'] >= 0 ? "+" : ""}{character.skillMods['Stealth'] || 0}</span> Stealth</div>
+                            </div>
                         </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">CON</span>
+                        <div className="row g-2">
+                            <div id="CON" className="col-4 text-center d-flex flex-column ability">
+                                <span className="ability-label">Constitution</span>
                                 <span className="ability-score">{character.abilityScores['CON'] || 0}</span>
                                 <span className="ability-mod">MOD: {character.abilityMods['CON'] >= 0 ? "+" : ""}{character.abilityMods['CON'] || 0}</span>
-                                <span className="ability-mod">ST: {character.savingThrows['CON'] >= 0 ? "+" : ""}{character.savingThrows['CON'] || 0}</span>                            </div>
+                            </div>
+                            <div className="col-8 text-start ability">
+                                <div className="skill-label pt-1"><span className="skill-mod">{character.savingThrows['CON'] >= 0 ? "+" : ""}{character.savingThrows['CON'] || 0}</span> <strong>Saving Throw</strong></div>
+                            </div>
                         </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">INT</span>
+                        <div className="row g-2">
+                            <div id="INT" className="col-4 text-center d-flex flex-column ability">
+                                <span className="ability-label">Intelligence</span>
                                 <span className="ability-score">{character.abilityScores['INT'] || 0}</span>
                                 <span className="ability-mod">MOD: {character.abilityMods['INT'] >= 0 ? "+" : ""}{character.abilityMods['INT'] || 0}</span>
-                                <span className="ability-mod">ST: {character.savingThrows['INT'] >= 0 ? "+" : ""}{character.savingThrows['INT'] || 0}</span>                            </div>
+                            </div>
+                            <div className="col-8 text-start ability">
+                                <div className="skill-label pt-1"><span className="skill-mod">{character.savingThrows['INT'] >= 0 ? "+" : ""}{character.savingThrows['INT'] || 0}</span> <strong>Saving Throw</strong></div>
+                                <hr className="my-2 mx-0"/>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Arcana'] >= 0 ? "+" : ""}{character.skillMods['Arcana'] || 0}</span> Arcana</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['History'] >= 0 ? "+" : ""}{character.skillMods['History'] || 0}</span> History</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Investigation'] >= 0 ? "+" : ""}{character.skillMods['Investigation'] || 0}</span> Investigation</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Nature'] >= 0 ? "+" : ""}{character.skillMods['Nature'] || 0}</span> Nature</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Religion'] >= 0 ? "+" : ""}{character.skillMods['Religion'] || 0}</span> Religion</div>
+                            </div>
                         </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">WIS</span>
+                        <div className="row g-2">
+                            <div id="WIS" className="col-4 text-center d-flex flex-column ability">
+                                <span className="ability-label">Wisdom</span>
                                 <span className="ability-score">{character.abilityScores['WIS'] || 0}</span>
                                 <span className="ability-mod">MOD: {character.abilityMods['WIS'] >= 0 ? "+" : ""}{character.abilityMods['WIS'] || 0}</span>
-                                <span className="ability-mod">ST: {character.savingThrows['WIS'] >= 0 ? "+" : ""}{character.savingThrows['WIS'] || 0}</span>                            </div>
+                            </div>
+                            <div className="col-8 text-start ability">
+                                <div className="skill-label pt-1"><span className="skill-mod">{character.savingThrows['WIS'] >= 0 ? "+" : ""}{character.savingThrows['WIS'] || 0}</span> <strong>Saving Throw</strong></div>
+                                <hr className="my-2 mx-0"/>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Animal Handling'] >= 0 ? "+" : ""}{character.skillMods['Animal Handling'] || 0}</span> Animal Handling</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Insight'] >= 0 ? "+" : ""}{character.skillMods['Insight'] || 0}</span> Insight</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Medicine'] >= 0 ? "+" : ""}{character.skillMods['Medicine'] || 0}</span> Medicine</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Perception'] >= 0 ? "+" : ""}{character.skillMods['Perception'] || 0}</span> Perception</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Survival'] >= 0 ? "+" : ""}{character.skillMods['Survival'] || 0}</span> Survival</div>
+                            </div>
                         </div>
-                        <div className="col-2">
-                            <div className="text-center d-flex flex-column ability">
-                                <span className="ability-label">CHA</span>
+                        <div className="row g-2">
+                            <div id="CHA" className="col-4 text-center d-flex flex-column ability">
+                                <span className="ability-label">Charisma</span>
                                 <span className="ability-score">{character.abilityScores['CHA'] || 0}</span>
                                 <span className="ability-mod">MOD: {character.abilityMods['CHA'] >= 0 ? "+" : ""}{character.abilityMods['CHA'] || 0}</span>
-                                <span className="ability-mod">ST: {character.savingThrows['CHA'] >= 0 ? "+" : ""}{character.savingThrows['CHA'] || 0}</span>                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <div className="row g-2 mb-1 text-center">
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">DEX</span>
-                                <span className="ability-label">Acrobatics</span>
-                                <span className="ability-mod">{character.skillMods['Acrobatics'] >= 0 ? "+" : ""}{character.skillProfs['Acrobatics'] || 0}</span>
                             </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">WIS</span>
-                                <span className="ability-label">Animal Handling</span>
-                                <span className="ability-mod">{character.skillMods['Animal Handling'] >= 0 ? "+" : ""}{character.skillProfs['Animal Handling'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">INT</span>
-                                <span className="ability-label">Arcana</span>
-                                <span className="ability-mod">{character.skillMods['Arcana'] >= 0 ? "+" : ""}{character.skillProfs['Arcana'] || 0}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row g-2 mb-1 text-center">
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">STR</span>
-                                <span className="ability-label">Athletics</span>
-                                <span className="ability-mod">{character.skillMods['Athletics'] >= 0 ? "+" : ""}{character.skillProfs['Athletics'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">CHA</span>
-                                <span className="ability-label">Deception</span>
-                                <span className="ability-mod">{character.skillMods['Deception'] >= 0 ? "+" : ""}{character.skillProfs['Deception'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">INT</span>
-                                <span className="ability-label">History</span>
-                                <span className="ability-mod">{character.skillMods['History'] >= 0 ? "+" : ""}{character.skillProfs['History'] || 0}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row g-2 mb-1 text-center">
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">WIS</span>
-                                <span className="ability-label">Insight</span>
-                                <span className="ability-mod">{character.skillMods['Insight'] >= 0 ? "+" : ""}{character.skillProfs['Insight'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">CHA</span>
-                                <span className="ability-label">Intimidation</span>
-                                <span className="ability-mod">{character.skillMods['Intimidation'] >= 0 ? "+" : ""}{character.skillProfs['Intimidation'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">INT</span>
-                                <span className="ability-label">Investigation</span>
-                                <span className="ability-mod">{character.skillMods['Investigation'] >= 0 ? "+" : ""}{character.skillProfs['Investigation'] || 0}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row g-2 mb-1 text-center">
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">WIS</span>
-                                <span className="ability-label">Medicine</span>
-                                <span className="ability-mod">{character.skillMods['Medicine'] >= 0 ? "+" : ""}{character.skillProfs['Medicine'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">INT</span>
-                                <span className="ability-label">Nature</span>
-                                <span className="ability-mod">{character.skillMods['Nature'] >= 0 ? "+" : ""}{character.skillProfs['Nature'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">WIS</span>
-                                <span className="ability-label">Perception</span>
-                                <span className="ability-mod">{character.skillMods['Perception'] >= 0 ? "+" : ""}{character.skillProfs['Perception'] || 0}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row g-2 mb-1 text-center">
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">CHA</span>
-                                <span className="ability-label">Performance</span>
-                                <span className="ability-mod">{character.skillMods['Performance'] >= 0 ? "+" : ""}{character.skillProfs['Performance'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">CHA</span>
-                                <span className="ability-label">Persuasion</span>
-                                <span className="ability-mod">{character.skillMods['Persuasion'] >= 0 ? "+" : ""}{character.skillProfs['Persuasion'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">INT</span>
-                                <span className="ability-label">Religion</span>
-                                <span className="ability-mod">{character.skillMods['Religion'] >= 0 ? "+" : ""}{character.skillProfs['Religion'] || 0}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row g-2 mb-1 text-center">
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">DEX</span>
-                                <span className="ability-label">Sleight of Hand</span>
-                                <span className="ability-mod">{character.skillMods['Sleight of Hand'] >= 0 ? "+" : ""}{character.skillProfs['Sleight of Hand'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">DEX</span>
-                                <span className="ability-label">Stealth</span>
-                                <span className="ability-mod">{character.skillMods['Stealth'] >= 0 ? "+" : ""}{character.skillProfs['Stealth'] || 0}</span>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="ability d-flex flex-column">
-                                <span className="ability-label">WIS</span>
-                                <span className="ability-label">Survival</span>
-                                <span className="ability-mod">{character.skillMods['Survival'] >= 0 ? "+" : ""}{character.skillProfs['Survival'] || 0}</span>
+                            <div className="col-8 text-start ability">
+                                <div className="skill-label pt-1"><span className="skill-mod">{character.savingThrows['CHA'] >= 0 ? "+" : ""}{character.savingThrows['CHA'] || 0}</span> <strong>Saving Throw</strong></div>
+                                <hr className="my-2 mx-0"/>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Deception'] >= 0 ? "+" : ""}{character.skillMods['Deception'] || 0}</span> Deception</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Intimidation'] >= 0 ? "+" : ""}{character.skillMods['Intimidation'] || 0}</span> Intimidation</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Performance'] >= 0 ? "+" : ""}{character.skillMods['Performance'] || 0}</span> Performance</div>
+                                <div className="skill-label"><span className="skill-mod">{character.skillMods['Persuasion'] >= 0 ? "+" : ""}{character.skillMods['Persuasion'] || 0}</span> Persuasion</div>
                             </div>
                         </div>
                     </div>
