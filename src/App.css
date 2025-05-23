@@ -38,37 +38,38 @@ p, input, select, span, li {
   font-family: "Bellefair" !important;
 }
 
+h1, h2, h3, strong, button, label,
 h2 span {
-  font-family: "IM Fell English SC" !important;
-
-}
-
-h1, h2, h3, strong, button, label {
   font-family: "IM Fell English SC" !important;
 }
 
 footer {
   color: var(--grey-dk) !important;
 }
-
 footer a {
   color: var(--grey-md) !important;
 }
 
-#character-container {
-  border: 2px solid black;
-  border-radius: .375rem;
-  background: white; 
-}
-
+#character-container,
 .form-section {
   border: 2px solid black;
   border-radius: .375rem;
   background: white;
 }
 
+.card, .form-section {
+  border-color: black !important;
+  border-width: 2px !important;
+}
+
 .card-img-top {
   color: inherit !important;
+  max-height: 100px;
+  padding-top: 10px;
+}
+
+.logo {
+  max-height: 100px;
 }
 
 .btn-primary {
@@ -83,18 +84,6 @@ footer a {
   transform: scale(1.05);
 }
 
-.logo {
-  max-height: 100px;
-}
-.card {
-  border-color: black !important;
-  border-width: 2px !important;
-}
-.card-img-top {
-  max-height: 100px;
-  padding-top: 10px;
-}
-
 .description {
   font-size: 0.85rem;
   background: whitesmoke;
@@ -105,46 +94,18 @@ footer a {
   margin-top: 8px;
 }
 
-.ability {
-  background: white;
-  border: 1px solid var(--grey-md);
-  border-radius: .375rem;
-}
-
-.ability-label {
-  font-family: "IM Fell English SC" !important;
-  font-weight: bold;
-}
-.ability-score {
-  font-size: 1.5rem;
-}
-.ability-mod {
-  color: var(--grey-lt) !important;
-}
-.skill-label {
-  font-family: "Bellefair" !important;
-}
-.skill-mod {
-  color: var(--grey-lt) !important;
-  border-bottom: 2px solid var(--grey-lt);
-  padding: 0px 10px;
-}
-.big-number {
-  font-weight: bold;
-  border: 1px solid var(--grey-md);
-  border-radius: 50%;
-  height: 10px;
-  padding: 5px 10px;
-}
-.check-input {
-  accent-color: var(--grey-md) !important;
-}
-.stat {
+.stat, .ability {
   background: white;
   border: 2px solid var(--grey-md);
   border-radius: .375rem;
+}
+.stat {
   padding-top: 30px;
 }
+.ability {
+  padding-bottom: 10px;
+}
+
 .stat-icon {
   width: 50px;
   height: 50px;
@@ -153,99 +114,122 @@ footer a {
   padding-top: 7px;
   border: 2px solid var(--grey-md);
   border-radius: 50%;
-  background: white;
+  background: whitesmoke;
   position: relative;
   top: 25px;
 }
 
-/*
-#class-overview-container {
-  position: relative;
-  display: inline-block;
-  background: transparent;  
+.stat-label, .ability-label {
+  font-family: "IM Fell English SC" !important;
+  font-weight: bold;
+}
+.ability-label {
+  font-size: 1.3rem;
 }
 
-.overlay-text {
+.stat-score, .ability-score, .ability-mod {
+  font-size: 1.5rem;
+  font-family: "Bellefair" !important;
+  font-weight: bold;
+}
+
+.ability-score {
+  border: 2px solid var(--grey-lt);
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  width: 40px;
+  background: white;
+  position: relative;
+  top: -23px;
+  position: relative;
+  background: rgb(226, 226, 226);
+}
+.ability-score::after {
+  content: "Score";
+  font-family: "IM Fell English SC" !important;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--grey-lt);
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
   text-align: center;
 }
-  
-@media (max-width: 768px) {
-  .overlay-text {
-     font-size: 14px;
-  }
+
+.ability-mod {
+  color: var(--grey-md) !important;
+  border: 2px solid var(--grey-lt);
+  border-radius: 25%;
+  display: inline-block;
+  width: 70px;
+  background: whitesmoke;
 }
-*/
+.ability-mod::after {
+  content: "Modifier";
+  font-family: "IM Fell English SC" !important;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--grey-lt);
+  display: block;
+}
+
+.skill-label {
+  font-family: "Bellefair" !important;
+  color: var(--grey-md) !important;
+}
+.skill-mod {
+  color: var(--grey-lt) !important;
+  border-bottom: 2px solid var(--grey-lt);
+  padding: 0px 5px;
+}
+
+.prof-circle {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid var(--grey-md);
+  border-radius: 50%;
+  margin-right: 0.4em;
+  vertical-align: middle;
+  background: transparent;
+}
+.prof-circle.filled {
+  background: var(--grey-lt);
+}
+
+.big-number {
+  font-weight: bold;
+  border: 1px solid var(--grey-md);
+  border-radius: 50%;
+  height: 10px;
+  padding: 5px 10px;
+}
+
+.check-input {
+  accent-color: var(--grey-md) !important;
+  margin-right: 5px;
+}
+
+.skill-options {
+  border-left: 2px solid #DEE2E6;
+}
+
+hr {
+  border: 1px solid #DEE2E6;
+  opacity: 1;
+}
 
 /* Printable character sheet */
 @media print {
-  /* Hide elements during print */
   a, button, footer {
-      display: none;
-      opacity: 0;
+    display: none;
+    opacity: 0;
   }
   #printable-area {
-      border: 2px solid black;
+    border: 2px solid black;
   }
   body {
-      margin: 1in;
-      font-size: 14px;
+    margin: 1in;
+    font-size: 14px;
   }
 }
-
-/* Custom Dropdown Styles 
-.dd-menu {
-  position: relative;
-  display: inline-block;
-}
-.dd-button {
-  font-family: "Bellefair" !important;
-  font-style: italic;
-  cursor: pointer;
-  background: #fff;
-  user-select: none;
-  min-width: 160px;
-}
-.dd-content {
-  font-family: "Bellefair" !important;
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  z-index: 1000;
-}
-.dd-content div {
-  cursor: pointer;
-  user-select: none;
-}
-.dd-content div:hover {
-  background-color: #f1f1f1;
-}
-.dd-hover-info {
-  position: absolute;
-  background: #FEF6CB !important;
-  border-color: black !important;
-  z-index: 2000;
-  font-size: 14px;
-  display: none;
-  overflow: visible;
-  padding: .375rem .75rem;
-}
-.dd-hover-info h4 {
-  margin: 0 0 5px 0;
-  font-size: 16px;
-  color: #333;
-}
-.dd-hover-info p {
-  margin: 0;
-  color: #555;
-}
-.dd-menu, #form-container {
-  overflow: visible !important;
-}
-*/

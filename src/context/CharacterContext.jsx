@@ -171,16 +171,6 @@ const recAbilityScores = {
   Wizard: { STR: 8, DEX: 12, CON: 13, INT: 15, WIS: 14, CHA: 10 },
 };
 
-// Mapping of abilities to associated skills
-const abilityToSkills = {
-  STR: ['Athletics', 'Intimidation'],
-  DEX: ['Acrobatics', 'Sleight of Hand', 'Stealth'],
-  CON: [],
-  INT: ['Arcana', 'History', 'Investigation', 'Nature', 'Religion'],
-  WIS: ['Animal Handling', 'Insight', 'Medicine', 'Perception', 'Survival'],
-  CHA: ['Deception', 'Intimidation', 'Performance', 'Persuasion'],
-};
-
 // Skill proficiencies for each class
 const classSkillOptions = {
   Barbarian: { numChoices: 2, 
@@ -283,8 +273,37 @@ export const CharacterProvider = ({ children }) => {
    * Proficiency Bonus (2 for lvl 1) to the ability modifier associated with that skill.
    * Skills NOT proficient in - just the relevant ability modifier.
   */
-  const calculateSkills = (abilityMods) => {
-    return {};
+  const skillToAbility = {
+    'Acrobatics': 'DEX',
+    'Animal Handling': 'WIS',
+    'Arcana': 'INT',
+    'Athletics': 'STR',
+    'Deception': 'CHA',
+    'History': 'INT',
+    'Insight': 'WIS',
+    'Intimidation': 'CHA',
+    'Investigation': 'INT',
+    'Medicine': 'WIS',
+    'Nature': 'INT',
+    'Perception': 'WIS',
+    'Performance': 'CHA',
+    'Persuasion': 'CHA',
+    'Religion': 'INT',
+    'Sleight of Hand': 'DEX',
+    'Stealth': 'DEX',
+    'Survival': 'WIS',
+  };
+
+  const calculateSkills = (abilityMods, skillProfs = character.skillProfs, proficiencyBonus = character.proficiencyBonus) => {
+    const skillMods = {};
+    for (const [skill, ability] of Object.entries(skillToAbility)) {
+      if (skillProfs && skillProfs.includes(skill)) {
+        skillMods[skill] = abilityMods[ability] + proficiencyBonus;
+      } else {
+        skillMods[skill] = abilityMods[ability];
+      }
+    }
+    return skillMods;
   }
 
   // Function to update the character class
@@ -307,7 +326,7 @@ export const CharacterProvider = ({ children }) => {
     }));
   };
   return (
-    <CharacterContext.Provider value={{ character, setCharacter, setCharacterClass, speciesToSubspecies, speciesStats, backgroundStats, classStats, classSkillOptions, abilityToSkills }}>
+    <CharacterContext.Provider value={{ character, setCharacter, setCharacterClass, speciesToSubspecies, speciesStats, backgroundStats, classStats, classSkillOptions, skillToAbility }}>
       {children}
     </CharacterContext.Provider>
   );

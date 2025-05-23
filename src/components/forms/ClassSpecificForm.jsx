@@ -2,31 +2,47 @@ import { useContext, useState } from 'react';
 import { CharacterContext } from '../../context/CharacterContext';
 
 export default function ClassSpecificForm() {
-  const { character, setCharacter, classStats, classSkillOptions } = useContext(CharacterContext);
+    const { character, setCharacter, classStats, classSkillOptions, skillToAbility } = useContext(CharacterContext);
 
-  const classFormComponents = {
-    Barbarian: BarbarianForm,
-    Bard: BardForm,
-    Cleric: ClericForm,
-    Druid: DruidForm,
-    Fighter: FighterForm,
-    Monk: MonkForm,
-    Paladin: PaladinForm,
-    Ranger: RangerForm,
-    Rogue: RogueForm,
-    Sorcerer: SorcererForm,
-    Warlock: WarlockForm,
-    Wizard: WizardForm,
-  };
+    const classFormComponents = {
+        Barbarian: BarbarianForm,
+        Bard: BardForm,
+        Cleric: ClericForm,
+        Druid: DruidForm,
+        Fighter: FighterForm,
+        Monk: MonkForm,
+        Paladin: PaladinForm,
+        Ranger: RangerForm,
+        Rogue: RogueForm,
+        Sorcerer: SorcererForm,
+        Warlock: WarlockForm,
+        Wizard: WizardForm,
+    };
 
-  const ClassForm = classFormComponents[character.class];
+    const ClassForm = classFormComponents[character.class];
 
-  if (!ClassForm) {
-    return <div>Please go back to select a class.</div>;
-  }
+    if (!ClassForm) {
+        return <div>Please go back to select a class.</div>;
+    }
 
-  const numChoices = classSkillOptions[character.class]?.numChoices;
-  const skillOptions = classSkillOptions[character.class]?.skillOptions;
+    const numChoices = classSkillOptions[character.class]?.numChoices;
+    const skillOptions = classSkillOptions[character.class]?.skillOptions;
+
+    // Helper to get abilityMods and calculateSkills from context
+    const abilityMods = character.abilityMods || {};
+    const proficiencyBonus = character.proficiencyBonus || 2;
+
+    const calculateSkills = (abilityMods, skillProfs = [], proficiencyBonus = 2) => {
+        const skillMods = {};
+        for (const [skill, ability] of Object.entries(skillToAbility)) {
+        if (skillProfs.includes(skill)) {
+            skillMods[skill] = abilityMods[ability] + proficiencyBonus;
+        } else {
+            skillMods[skill] = abilityMods[ability];
+        }
+        }
+        return skillMods;
+    };
 
   return (
     <div className="form-section p-2 pb-3">
@@ -35,9 +51,11 @@ export default function ClassSpecificForm() {
         {classStats[character.class]?.description}
       </p>
       <label>Skill Proficiencies</label>
-      <p>The <strong>{character.class}</strong> class grants proficiency in <span className="big-number">{numChoices}</span> skills from the following options:</p>
-      <div className="container">
-        <div className="row m-auto">
+      <div className="row">
+      <div className="col-6">
+        <p>The <strong>{character.class}</strong> class grants proficiency in <span className="big-number">{numChoices}</span> skills. Select from the following options:</p>
+      </div>
+      <div className="col-6 skill-options">
           {skillOptions && skillOptions.map((option, index) => {
             const selectedSkills = character.skillProfs || [];
             const checked = selectedSkills.includes(option);
@@ -60,19 +78,21 @@ export default function ClassSpecificForm() {
                     } else {
                       newSkills = newSkills.filter(skill => skill !== option);
                     }
-                    setCharacter({ ...character, skillProfs: newSkills });
+                    // Update skillProfs and skillMods together
+                    setCharacter({
+                      ...character,
+                      skillProfs: newSkills,
+                      skillMods: calculateSkills(abilityMods, newSkills, proficiencyBonus),
+                    });
                   }}
                 />
                 <label htmlFor={option}>{option}</label>
               </div>
             );
           })}
-          <div className="row m-auto">
-            <button className="btn btn-primary mt-2">Update Skills</button>
-          </div>
-        </div>
       </div>
-      <br/>
+      </div>
+      <hr/>
       <ClassForm />
     </div>
   );
